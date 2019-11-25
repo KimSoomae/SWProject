@@ -1,0 +1,261 @@
+<head>
+<style>
+    :root {
+	--main-color: #142C46;
+	--accent-color: #8D7050;
+	--footer-color: #403E3F;
+}
+
+@font-face {
+	font-family: "한국외대체 M";
+	src: local(한국외대체 M);
+}
+
+@font-face {
+	font-family: "한국외대체 L";
+	src: local(한국외대체 L);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+body {
+	margin: 0 auto;
+}
+
+
+a {
+	text-decoration: none !important;;
+}
+
+header {
+	top: 0;
+	width: 100%;
+	display: grid;
+	grid-template-rows: 45px 116px;
+	border-bottom: 1.2px solid #949293;
+}
+.top {
+	background-color: var(--main-color);
+	border-bottom: 5.5px solid var(--accent-color);
+}
+
+.top ul {
+	display: flex;
+	width: 1000px;
+	margin: 0 auto;
+	justify-content: flex-end;
+}
+
+.top ul li {
+	list-style: none;
+	border-left: 1px solid white;
+	padding: 0px 20px 0px 20px;
+	margin-top: 8px;
+}
+
+.top ul li:first-child {
+	border-left: none;
+}
+
+.top ul li a {
+	font-family: "한국외대체 M";
+	font-size: 18px;
+	color: white;
+}
+.logo {
+	display: grid;
+	grid-template-columns: 100px 270px;
+    grid-template-rows: 60px 40px;
+	font-family: "한국외대체 B";
+	padding-top: 11px;
+	justify-content: center;
+}
+
+#logo1 {
+	grid-row-start: 1;
+	grid-row-end: 3;
+}
+
+#logo1 img {
+	width: 95px;
+	height: 95px;
+}
+
+#logo2 {
+	font-size: 42pt;
+}
+
+#logo2 #hufs {
+	color: var(--main-color)
+}
+
+#logo2 #cus {
+	color: var(--accent-color)
+}
+
+#logo3 {
+	font-size: 15pt;
+	color: var(--main-color);
+}
+
+#logo3 a {
+	color: inherit;
+}
+
+footer {
+	display: grid;
+	grid-template-columns: 425px 575px;
+	grid-template-rows: 120px 20px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 160px;
+	color: white;
+	font-size: 11pt;
+	padding-top: 15px;
+	background-color: var(--footer-color);
+	justify-content: center;
+}
+
+.university {
+	display: grid;
+	grid-template-columns: 100px 290px;
+	grid-template-rows: 68px 35px;
+}
+
+.club_union {
+	display: grid;
+	grid-template-columns: 100px 450px;
+	grid-template-rows: 68px 35px;
+}
+
+.footer_logo {
+	grid-row-start: 1;
+	grid-row-end: 3;
+	margin-top: 8px;
+}
+.footer_logo > img {
+	width: 80px;
+	height: 80px;
+	align-items: center;
+}
+
+.intro p {
+	line-height: 135%;
+}
+
+.sns ul {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-position: inside;
+}
+
+.sns a {
+	display: block;
+	margin: 0px 10px 0px 3px;
+	padding: 0;
+	color: inherit;
+	font-size: 15px;
+	text-decoration: none;
+	border : solid 1px currentColor;
+	width: 2em;
+	line-height: 2em;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.sns a:hover {
+	background-color: var(--accent-color);
+	transition: 1s;
+}
+#copyright {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+	<title>동아리연합회관리시스템</title>
+</head>
+<body>
+	<header>
+		<div class="top">
+			<ul>
+				<li><a href="signup">JOIN</a></li>
+				<li><a href="login">LOGIN</a></li>
+			</ul>
+		</div>
+		<div class="logo">
+			<div id="logo1" ><a href="main.html"><img src="img/hufscus1.png" alt="동아리연합회로고"></a></div>
+			<div id="logo2"><a href="main.html"><span id="hufs">HUFS</span><span id="cus">CUS</span></a></div>
+			<div id="logo3"><a href="main.html">한국외국어대학교 동아리연합회</a></div>
+		</div>
+	</header>
+
+        <div class="container">
+        {% block content %}
+        {% endblock %}
+        </div>
+	<footer>
+		<div class="university">
+			<div class="footer_logo"><img src="img/hufs2.png" alt="한국외대로고"></div>
+			<div class="intro">
+				<p>한국외국어대학교 서울캠퍼스</p>
+				<p>02450 서울특별시 동대문구 이문로 107</p>
+				<p>Tel. 82-2-2173-2114, Fax. 82-2-2173-3387</p>
+			</div>
+			<div class="sns">
+				<ul>
+					<li><a href="https://cafe.naver.com/hufscus" target="_blank">
+						<span class="fas fa-coffee"></span>
+					</a></li>
+					<li><a href="https://www.instagram.com/hufscus/" target="_blank">
+						<span class="fab fa-instagram"></span>
+					</a></li>
+					<li><a href="https://www.facebook.com/hufscus/" target="_blank">
+						<i class="fab fa-facebook"></i>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="club_union">
+			<div class="footer_logo"><img src="img/hufscus2.png" alt="동아리연합회로고"></div>
+			<div class="intro">
+				<p>한국외국어대학교 서울캠퍼스 제36대 동아리연합회 HUFSCUSE ME</p>
+				<p>02450 서울특별시 동대문구 이문로 107 국제학사 405호</p>
+				<p>TEL : 02)2173-2831, Email : hufscus36@naver.com</p>
+			</div>
+			<div class="sns">
+				<ul>
+					<li><a href="http://www.hufs.ac.kr/" target="_blank">
+						<span class="fas fa-university" title="homepage"></span>
+					</a></li>
+					<li><a href="https://www.instagram.com/hufstagram/" target="_blank">
+						<span class="fab fa-instagram"></span>
+					</a></li>
+					<li><a href="https://www.facebook.com/hufspr" target="_blank">
+						<i class="fab fa-facebook"></i>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="copyright">
+				Copyright ⓒ Hankuk University of Foreign Studies. All Rights Reserved.
+		</div>
+	</footer>
+</body>
+</html>
+</body>
