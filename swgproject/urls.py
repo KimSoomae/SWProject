@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from account import views
-import budget.views
+
 
 
 urlpatterns = [
@@ -24,8 +24,9 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
-    path('budget/',include ('budget.urls')),
+    #path('budget/',include ('budget.urls')),
     path('',views.home, name="home"),
+    path('budget',views.budget,name="budget"),
     
 
 ] 

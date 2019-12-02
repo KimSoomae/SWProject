@@ -9,4 +9,16 @@ class profile(models.Model):
     groupname=models.CharField(max_length=20)
     major=models.CharField(max_length=20)
     name=models.CharField(max_length=10)
+
+class Budget_list(models.Model):
+    num=models.IntegerField(max_length=5)
+    item=models.CharField(max_length=10)
+    quantity=models.IntegerField(max_length=5)
+    price=models.IntegerField(max_length=20)
+    qxp=models.IntegerField(max_length=25)
+    check=models.CharField(max_length=2)
     
+    
+    def __str__(self):
+        return self.item    
+

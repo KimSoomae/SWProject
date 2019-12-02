@@ -2,11 +2,12 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
-
 from django.contrib.auth import get_user_model,login, authenticate
 from django import forms
 from .forms import UserCreationMultiForm,UserCreationForm
 from .models import profile
+from . import views
+from .models import Budget_list
 
 
 # Create your views here.
@@ -58,3 +59,16 @@ def home(request, teamList=None):
     except:
         TeamList = None
     return render(request, 'home.html',{'Teams':TeamList})
+
+def budget(request):
+    if request.user.is_superuser:
+            return render(request,'budget_admin.html')
+    else:
+        budget_user=Budget_list.objects.all()
+        context={'budget_user': budget_user}
+        try:
+            budgetusers=Budget_list(num=request.POST['num'], item=request.POST['item'],quantity=request.POST['quantity'],price=request.POST['price'],qxp=request.POST['qxp'],check=request.POST['check'] )
+            budgetusers.save()
+        except:
+            budgetusers=None
+        return render(request,'budget_user.html',context)
