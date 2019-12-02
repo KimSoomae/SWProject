@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
 
-{% block content %}
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="budget_user.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+	<link rel="icon" href="img/hufscus3.png">
+
 	<title>동아리연합회관리시스템</title>
 </head>
 <style>
-    :root {
+   :root {
 	--main-color: #142C46;
 	--accent-color: #8D7050;
 	--footer-color: #403E3F;
@@ -48,6 +48,7 @@ header {
 	grid-template-rows: 45px 116px;
 	border-bottom: 1.2px solid #949293;
 }
+
 .top {
 	background-color: var(--main-color);
 	border-bottom: 5.5px solid var(--accent-color);
@@ -90,6 +91,7 @@ header {
 	grid-row-start: 1;
 	grid-row-end: 3;
 }
+
 #logo1 img {
 	width: 95px;
 	height: 95px;
@@ -159,6 +161,11 @@ hr {
 	margin-bottom: 25px;
 }
 
+input[type="text"]:disabled {
+  background: #ebebeb;
+  border: 0.5px solid #a9a9a9;
+}
+
 table {
 	width: 970px;
 	border-collapse: collapse;
@@ -181,24 +188,35 @@ table th {
 	background-color: var(--main-color);
 }
 
-table th:nth-child(1) {
-	width: 50px;
+table th:nth-child(1), table td:nth-child(1) {
+	width: 50.4px;
 }
 
-table th:nth-child(3) {
-	width: 75px
+table th:nth-child(2), table td:nth-child(2) {
+	width: 461.6px;
 }
 
-table th:nth-child(4) {
-	width: 150px
+table th:nth-child(3), table td:nth-child(3) {
+	width: 75.2px;
 }
 
-table th:nth-child(5) {
-	width: 180px
+table th:nth-child(4), table td:nth-child(4) {
+	width: 150.4px
 }
 
-table th:nth-child(6){
-	width: 50px;
+table th:nth-child(5), table td:nth-child(5) {
+	width: 180.8px
+}
+
+table th:nth-child(6), table td:nth-child(5) {
+	width: 50.4px;
+}
+
+table tbody {
+/*	display: block;
+*/	overflow-y: auto;
+	overflow-x: hidden;
+	height: 202px;
 }
 
 table td {
@@ -212,34 +230,34 @@ td b {
 	float: left;
 	margin-left: 10px;
 }
+
 input[type="text"] {
 	margin: 0px;
-/*	border-style: none;
-*/	outline-style: none;
+	outline-style: none;
 	font-family: "한국외대체 L";
 	font-weight: bold;
 	font-size: 15px;
 }
 
-#item {
+.item {
 	width: 442px;
 	padding-left: 3px;
 }
 
-#quantity {
+.quantity {
 	width: 60px;
 	text-align: center;
 }
 
-#price {
+.price {
 	width: 107px;
-	text-align: right;
+	text-align: center;
 	padding-right: 3px;
 }
 
-#qxp {
+.qxp {
 	width: 137px;
-	text-align: right;
+	text-align: center;
 	padding-right: 3px;
 }
 
@@ -249,6 +267,7 @@ input[type="checkbox"] {
 	cursor: pointer;
 	text-align: center;
 }
+
 .check {
 	display: flex;
 	align-items: center;
@@ -282,6 +301,7 @@ button {
 	cursor: pointer;
 	margin-top: 30px;
 }
+
 button:hover {
 	background-color: var(--accent-color);
 	transition: 1s;
@@ -318,11 +338,61 @@ footer {
 	grid-template-rows: 68px 35px;
 }
 
+.footer_logo {
+	grid-row-start: 1;
+	grid-row-end: 3;
+	margin-top: 8px;
+}
 
+.footer_logo > img {
+	width: 80px;
+	height: 80px;
+	align-items: center;
+}
+
+.intro p {
+	line-height: 135%;
+}
+
+.sns ul {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-position: inside;
+}
+
+.sns a {
+	display: block;
+	margin: 0px 10px 0px 3px;
+	padding: 0;
+	color: inherit;
+	font-size: 15px;
+	text-decoration: none;
+	border : solid 1px currentColor;
+	width: 2em;
+	line-height: 2em;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.sns a:hover {
+	background-color: var(--accent-color);
+	transition: 1s;
+}
+
+#copyright {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	text-align: center;
+}
 </style>
 <body>
+    <script src="budget_user.js"></script>
 	<header>
-		
+		{% extends 'base.html' %}
+
+        {% block content %} 
 		<div class="menu">
 			<ul>
 				<li><a href="#">공지게시판</a></li>
@@ -334,173 +404,263 @@ footer {
 		</div>
 	</header>
 	<section>
-		<h3><span id="club">칠하담</span> 예산안</h3>
+		<h3><span id="club">동아리</span> 예산안</h3>
 		<hr></hr>
-		<table>
-			<tr>
-				<th>#</th>
-				<th>품목</th>
-				<th>수량</th>
-				<th>단가</th>
-				<th>수량X단가</th>
-				<th>V</th>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="item" id="item"></td>
-				<td><input type="text" name="quantity" id="quantity"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-				<td><b>￦</b><input type="text" name="qXp" id="qxp"></td>
-				<td><div class="check"><input type="checkbox" name="delete"></div></td>
-			</tr>
-			<tr>
-				<td colspan="3">총 액</td>
-				<td colspan="3"></td>
-			</tr>
-		</table>
+		<div id="table_area"></div>
 		<p class="info">* 상태 : <span id="status">미제출</span></p>
 		<div class="button">
-			<button type="button">저장</button>
-			<button type="button">삭제</button>
-			<button type="button">제출</button>
+			<button type="button" onclick="click_save();">저장</button>
+			<button type="button" onclick="click_delete();">삭제</button>
+			<button type="button" onclick="click_submit();">제출</button>
 		</div>
 	</section>
+    <script type="text/javascript">
+        window.onload = function create_table() {
+            var status = document.getElementById('status').innerHTML;
+            var box = document.getElementsByTagName('input');
+            var tag = "";
+            
+            tag += "<table id=\"table\">";
+            tag += "<thead><tr><th>#</th><th>품목</th><th>수량</th><th>단가</th><th>수량X단가</th><th>V</th></tr></thead>";
+            tag += "<tbody>";
+            for (var i=0; i < 18; i++) {
+                tag += "<tr onkeyup=\"set_col(this);\">";
+                if (i == 0) {
+                    tag += "<td class=\"num\">1</td>";
+                    tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
+                    tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+                    tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+                } else {
+                    tag += "<td class=\"num\"></td>";
+                    tag += "<td><input type=\"text\" name=\"item\" class=\"item\" disabled></td>";
+                    tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\" disabled></td>";
+                    tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\" disabled></td>";
+                }
+                tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
+                tag += "<td><div class=\"check\"><input type=\"checkbox\" name=\"delete\" disabled></div></td>";
+                tag += "</tr>";
+            }
+            tag += "<tr><td colspan=\"3\">총 액</td><td colspan=\"3\" id=\"total\"></td></tr>";
+            tag += "</tbody>";
+            tag += "</table>";
+
+            document.getElementById('table_area').innerHTML = tag;
+
+            // 제출 상태나 확인완료 상태이면 수정을 못하도록 막음
+            if (status == '제출' | status == '확인완료') {
+                for (var i = 0; i < box.length; i++) {
+                    box[i].disabled = true;
+                }
+                return;
+            }
+        }
+
+        function only_num(input) {
+            input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+        } // 출처 : https://stackoverflow.com/questions/469357/html-text-input-allow-only-numeric-input/28838789#28838789
+
+        function sum_total() {
+            var qxp = document.getElementsByClassName('qxp');
+            var sum = 0;
+            var flag = false;
+
+            for (var i = 0; i < qxp.length; i++) {
+                if (qxp[i].innerHTML != "") {
+                    flag = true;
+                    sum += parseInt(qxp[i].innerHTML);
+                }
+            }
+
+            if (flag == true) {
+                document.getElementById('total').innerHTML = '￦  ' + sum;
+            } else { // 계산할 합계가 없는 경우 총 액 칸은 비어있어야 함
+                document.getElementById('total').innerHTML = "";
+            }
+        }
+
+        function sum_qxp(input) {
+            var parent = input.parentNode.parentNode; // 행(tr)
+            var quantity = parent.childNodes[2].lastChild.value; // 해당 행의 수량 입력값
+            var price = parent.childNodes[3].lastChild.value; // 해당 행의 가격 입력값
+            var qxp = parent.childNodes[4].lastChild // 수량과 가격을 곱한 결과를 넣을 셀
+            var sum = 0;
+            
+            if (!quantity == false & !price == false) { // 수량이나 가격 입력값이 입력되었는지 체크
+                sum = parseInt(quantity) * parseInt(price);
+                qxp.innerHTML = sum;
+            } else { // 수량이나 가격을 입력하고 지운 경우
+                qxp.innerHTML = "";
+            }
+
+            sum_total();
+        }
+
+        function add_col() {
+            var parent = document.querySelector('#table tbody');
+            var row = document.createElement('tr');
+            var row_len = parent.childNodes.length;
+            var tag = "";
+
+            row.setAttribute('onkeyup', 'set_col(this);');
+            tag += "<td class=\"num\"></td>";
+            tag += "<td><input type=\"text\" name=\"item\" class=\"item\" disabled></td>";
+            tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\" disabled></td>";
+            tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\" disabled></td>";
+            tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
+            tag += "<td><div class=\"check\"><input type=\"checkbox\" name=\"delete\" disabled></div></td>";
+
+            row.innerHTML = tag;
+            parent.insertBefore(row, parent.childNodes[row_len - 1]); // 마지막 총액 행 전에 새로운 행 삽입
+        }
+
+        function set_col(input) {
+            var parent = document.querySelector('#table tbody');
+            var len_tr = parent.childNodes.length - 1; // 총 합 행 제외
+
+            // 마지막 행이면 행 추가
+            if (input.rowIndex == len_tr) {
+                add_col(input);
+            }
+
+            var num = input.childNodes[0]; // 해당 행 #란
+            var thing = input.childNodes[1].lastChild.value; // 해당 행 품목란에 입력된 값
+            var quantity = input.childNodes[2].lastChild.value; // 해당 행 수량란에 입력된 값
+            var price = input.childNodes[3].lastChild.value; // 해당 행 단가란에 입력된 값
+            var check_box = input.lastChild.lastChild.lastChild; // 해당 행 체크 박스
+
+            var next_row = input.nextSibling // 해당 행의 다음 행
+            var next_num = input.nextSibling.childNodes[0]; // 해당 행의 다음 행 #란
+            var next_thing = input.nextSibling.childNodes[1].lastChild; // 해당 행의 다음 행 품목 입력란
+            var next_quantity = input.nextSibling.childNodes[2].lastChild; // 해당 행의 다음 행 수량 입력란
+            var next_price = input.nextSibling.childNodes[3].lastChild; // 해당 행의 다음행 단가 입력란
+
+            if (num.innerHTML) { // 해당 행이 활성화되어있다면
+                check_box.disabled = false;
+            } else {
+                check_box.checked = false;
+                check_box.disabled = true;
+            }
+
+            if (thing & quantity & price) { // 해당 행의 모든 란을 기입했다면 다음 행 활성화
+                next_num.innerHTML = next_row.rowIndex;
+                next_thing.disabled = false;
+                next_quantity.disabled = false;
+                next_price.disabled = false;
+            }
+        }
+
+        function check_empty() {
+            var box = document.querySelectorAll('input[type=\"text\"]:not([disabled])');
+            var last_box = box.length - 1;
+
+            // 첫 행에 아무 것도 입력하지 않거나 첫 행 input box 3개 중 2개 이하만 채움 
+            if (box.length == 3) {
+                return true;
+            }
+
+            // 마지막 행에 입력된 내용이 없다면
+            if (!box[last_box].value & !box[last_box-1].value & !box[last_box-2].value) { 
+                // 마지막 행에 있는 input box를 제외하고 비어있는 input box가 있는지 검사
+                for (var i = 0; i < box.length - 3; i++) { 
+                    if (!box[i].value) {
+                        return true;
+                    }
+                }
+                return false; 
+            // 최소한 마지막 행을 채우지 않음
+            } else { 
+                return true;
+            }
+        }
+
+        function click_save() {
+            var status = document.getElementById('status').innerHTML;
+            var empty = check_empty();
+
+            if (status == '제출' | status == '확인 완료') {
+                alert('이미 저장되어있습니다.');
+            } else if (empty == true) {
+                alert("비어있는 란이 있습니다! 다시 한 번 확인해주세요.");
+            } else {
+                // 저장
+                alert("지금까지 입력/수정하신 내용을 저장하였습니다!");
+            }
+        }
+
+        function click_delete() {
+            var status = document.getElementById('status').innerHTML;
+
+            if (status == '제출' | status == '확인완료') {
+                alert("이미 제출하셨기 때문에 삭제할 수 없습니다.");
+                return;
+            }
+
+            var answer = confirm("정말로 삭제하시겠습니까?");
+
+            if (answer == false) {
+                return;
+            } else {
+                var parent = document.querySelector('#table tbody');	
+                var check_box = document.querySelectorAll('input[type=\"checkbox\"]:checked');
+                var tr = document.querySelectorAll('#table tbody tr');
+                var active = document.querySelectorAll('#table tbody tr input[type=\"text\"]:not([disabled])');
+                var default_row_len = 18;
+                var count = 0;
+
+                // 체크한 행 삭제
+                for (var i = 0; i < check_box.length; i++) {
+                    var checked_tr = check_box[i].parentNode.parentNode.parentNode;
+
+                    // 활성화된 행이 첫번째 행 하나 밖에 없는데 삭제하려는 경우 or 활성화된 모든 행을 삭제하려는 경우
+                    if ((check_box.length == 1 & active.length == 3) | (((check_box.length*3) == active.length) & i == 0)) { 
+                        // 첫번째 행을 삭제하지 않고 해당 행을 비우기만 함
+                        active[0].value = "";
+                        active[1].value = "";
+                        active[2].value = "";
+                        tr[0].childNodes[4].lastChild.innerHTML = "";
+                        check_box[0].checked = false;
+                        count += 1;
+                    } else {
+                        parent.removeChild(checked_tr);
+                        count += 1;
+
+                        tr = document.querySelectorAll('#table tbody tr');
+                        if (tr.length <= default_row_len) {
+                            add_col();
+                        }
+                    }
+                }
+
+                // 행 번호 다시 부여
+                for (var i = 1; i < tr.length - 1; i++) {	
+                    if (tr[i].childNodes[0].innerHTML) {
+                        tr[i].childNodes[0].innerHTML = tr[i].rowIndex;
+                    }
+                }
+
+                sum_total();
+
+                if (count == 0) {
+                    alert('삭제할 항목을 체크해주세요!');
+                } else {
+                    alert(count + '건이 삭제되었습니다.');
+                }
+            }
+        }
+
+         function click_submit() {
+            var empty = check_empty();
+
+            if (empty == true) {
+                alert("비어있는 란이 있습니다! 다시 한 번 확인해주세요.");
+            } else {
+                // 저장 후
+                // 제출
+                // status를 제출로 변경
+                alert("입력하신 내용을 저장 후 제출하였습니다!");
+            }
+        }
+    </script>
  {% endblock %}
  </body>
  </html>

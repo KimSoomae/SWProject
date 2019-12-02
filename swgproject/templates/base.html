@@ -204,6 +204,10 @@ footer {
 	grid-column-end: 3;
 	text-align: center;
 }
+.login_state{
+	color:white;
+	padding-top:7px;
+}
 </style>
 </head>
 <body>
@@ -219,8 +223,19 @@ footer {
 	<header>
 		<div class="top">
 			<ul>
+			{% if user.is_authenticated %}
+				{% if request.user.is_superuser %}
+					<h3 class="login_state">관리자로 로그인 되었습니다</h3>
+				{% else %}
+					<h3>{{ user.username }}님 환영합니다</h3>
+				{% endif %}	
+				<li><a href="signup">JOIN</a></li>
+				<li><a href="logout">LOGOUT</a></li>
+				
+			{% else %}
 				<li><a href="signup">JOIN</a></li>
 				<li><a href="login">LOGIN</a></li>
+			{% endif %}	
 			</ul>
 		</div>
 		<div class="logo">
