@@ -416,250 +416,252 @@ footer {
 	</section>
     <script type="text/javascript">
         window.onload = function create_table() {
-            var status = document.getElementById('status').innerHTML;
-            var box = document.getElementsByTagName('input');
-            var tag = "";
-            
-            tag += "<table id=\"table\">";
-            tag += "<thead><tr><th>#</th><th>품목</th><th>수량</th><th>단가</th><th>수량X단가</th><th>V</th></tr></thead>";
-            tag += "<tbody>";
-            for (var i=0; i < 18; i++) {
-                tag += "<tr onkeyup=\"set_col(this);\">";
-                if (i == 0) {
-                    tag += "<td class=\"num\">1</td>";
-                    tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
-                    tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
-                    tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
-                } else {
-                    tag += "<td class=\"num\"></td>";
-                    tag += "<td><input type=\"text\" name=\"item\" class=\"item\" disabled></td>";
-                    tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\" disabled></td>";
-                    tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\" disabled></td>";
-                }
-                tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
-                tag += "<td><div class=\"check\"><input type=\"checkbox\" name=\"delete\" disabled></div></td>";
-                tag += "</tr>";
-            }
-            tag += "<tr><td colspan=\"3\">총 액</td><td colspan=\"3\" id=\"total\"></td></tr>";
-            tag += "</tbody>";
-            tag += "</table>";
+	var status = document.getElementById('status').innerHTML;
+	var box = document.getElementsByTagName('input');
+	var tag = "";
+	
+	tag += "<table id=\"table\">";
+	tag += "<thead><tr><th>#</th><th>품목</th><th>수량</th><th>단가</th><th>수량X단가</th><th>V</th></tr></thead>";
+	tag += "<tbody>";
+	for (var i=0; i < 18; i++) {
+		tag += "<tr onkeyup=\"set_col(this);\">";
+		if (i == 0) {
+			tag += "<td class=\"num\"></td>";
+			tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
+			tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+			tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+		} else {
+			tag += "<td class=\"num\"></td>";
+			tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
+			tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+			tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+		}
+		tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
+		tag += "<td><div class=\"check\"><input type=\"checkbox\" name=\"delete\"></div></td>";
+		tag += "</tr>";
+	}
+	tag += "<tr><td colspan=\"3\">총 액</td><td colspan=\"3\" id=\"total\"></td></tr>";
+	tag += "</tbody>";
+	tag += "</table>";
 
-            document.getElementById('table_area').innerHTML = tag;
+	document.getElementById('table_area').innerHTML = tag;
 
-            // 제출 상태나 확인완료 상태이면 수정을 못하도록 막음
-            if (status == '제출' | status == '확인완료') {
-                for (var i = 0; i < box.length; i++) {
-                    box[i].disabled = true;
-                }
-                return;
-            }
-        }
+	// 제출 상태나 확인완료 상태이면 수정을 못하도록 막음
+	if (status == '제출' | status == '확인완료') {
+		for (var i = 0; i < box.length; i++) {
+			box[i].disabled = true;
+		}
+		return;
+	}
+}
 
-        function only_num(input) {
-            input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
-        } // 출처 : https://stackoverflow.com/questions/469357/html-text-input-allow-only-numeric-input/28838789#28838789
+function only_num(input) {
+	input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+} // 출처 : https://stackoverflow.com/questions/469357/html-text-input-allow-only-numeric-input/28838789#28838789
 
-        function sum_total() {
-            var qxp = document.getElementsByClassName('qxp');
-            var sum = 0;
-            var flag = false;
+function sum_total() {
+	var qxp = document.getElementsByClassName('qxp');
+	var sum = 0;
+	var flag = false;
 
-            for (var i = 0; i < qxp.length; i++) {
-                if (qxp[i].innerHTML != "") {
-                    flag = true;
-                    sum += parseInt(qxp[i].innerHTML);
-                }
-            }
+	for (var i = 0; i < qxp.length; i++) {
+		if (qxp[i].innerHTML != "") {
+			flag = true;
+			sum += parseInt(qxp[i].innerHTML);
+		}
+	}
 
-            if (flag == true) {
-                document.getElementById('total').innerHTML = '￦  ' + sum;
-            } else { // 계산할 합계가 없는 경우 총 액 칸은 비어있어야 함
-                document.getElementById('total').innerHTML = "";
-            }
-        }
+	if (flag == true) {
+		document.getElementById('total').innerHTML = '￦  ' + sum;
+	} else { // 계산할 합계가 없는 경우 총 액 칸은 비어있어야 함
+		document.getElementById('total').innerHTML = "";
+	}
+}
 
-        function sum_qxp(input) {
-            var parent = input.parentNode.parentNode; // 행(tr)
-            var quantity = parent.childNodes[2].lastChild.value; // 해당 행의 수량 입력값
-            var price = parent.childNodes[3].lastChild.value; // 해당 행의 가격 입력값
-            var qxp = parent.childNodes[4].lastChild // 수량과 가격을 곱한 결과를 넣을 셀
-            var sum = 0;
-            
-            if (!quantity == false & !price == false) { // 수량이나 가격 입력값이 입력되었는지 체크
-                sum = parseInt(quantity) * parseInt(price);
-                qxp.innerHTML = sum;
-            } else { // 수량이나 가격을 입력하고 지운 경우
-                qxp.innerHTML = "";
-            }
+function sum_qxp(input) {
+	var parent = input.parentNode.parentNode; // 행(tr)
+	var quantity = parent.childNodes[2].lastChild.value; // 해당 행의 수량 입력값
+	var price = parent.childNodes[3].lastChild.value; // 해당 행의 가격 입력값
+	var qxp = parent.childNodes[4].lastChild // 수량과 가격을 곱한 결과를 넣을 셀
+	var sum = 0;
+	
+ 	if (!quantity == false & !price == false) { // 수량이나 가격 입력값이 입력되었는지 체크
+		sum = parseInt(quantity) * parseInt(price);
+		qxp.innerHTML = sum;
+	} else { // 수량이나 가격을 입력하고 지운 경우
+		qxp.innerHTML = "";
+	}
 
-            sum_total();
-        }
+	sum_total();
+ }
 
-        function add_col() {
-            var parent = document.querySelector('#table tbody');
-            var row = document.createElement('tr');
-            var row_len = parent.childNodes.length;
-            var tag = "";
+ function add_col() {
+	var parent = document.querySelector('#table tbody');
+	var row = document.createElement('tr');
+	var row_len = parent.childNodes.length;
+	var tag = "";
 
-            row.setAttribute('onkeyup', 'set_col(this);');
-            tag += "<td class=\"num\"></td>";
-            tag += "<td><input type=\"text\" name=\"item\" class=\"item\" disabled></td>";
-            tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\" disabled></td>";
-            tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\" disabled></td>";
-            tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
-            tag += "<td><div class=\"check\"><input type=\"checkbox\" name=\"delete\" disabled></div></td>";
+	row.setAttribute('onkeyup', 'set_col(this);');
+	tag += "<td class=\"num\"></td>";
+	tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
+	tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+	tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+	tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
+	tag += "<td><div class=\"check\"><input type=\"checkbox\" name=\"delete\"></div></td>";
 
-            row.innerHTML = tag;
-            parent.insertBefore(row, parent.childNodes[row_len - 1]); // 마지막 총액 행 전에 새로운 행 삽입
-        }
+	row.innerHTML = tag;
+	parent.insertBefore(row, parent.childNodes[row_len - 1]); // 마지막 총액 행 전에 새로운 행 삽입
+}
 
-        function set_col(input) {
-            var parent = document.querySelector('#table tbody');
-            var len_tr = parent.childNodes.length - 1; // 총 합 행 제외
+function set_col(input) {
+	var parent = document.querySelector('#table tbody');
+	var len_tr = parent.childNodes.length - 1; // 총 합 행 제외
 
-            // 마지막 행이면 행 추가
-            if (input.rowIndex == len_tr) {
-                add_col(input);
-            }
+	// 마지막 행이면 행 추가
+	if (input.rowIndex == len_tr) {
+		add_col(input);
+	}
 
-            var num = input.childNodes[0]; // 해당 행 #란
-            var thing = input.childNodes[1].lastChild.value; // 해당 행 품목란에 입력된 값
-            var quantity = input.childNodes[2].lastChild.value; // 해당 행 수량란에 입력된 값
-            var price = input.childNodes[3].lastChild.value; // 해당 행 단가란에 입력된 값
-            var check_box = input.lastChild.lastChild.lastChild; // 해당 행 체크 박스
+	var current_row = input
+	var num = input.childNodes[0]; // 해당 행 #란
+	var thing = input.childNodes[1].firstChild.value; // 해당 행 품목란에 입력된 값
+	var quantity = input.childNodes[2].lastChild.value; // 해당 행 수량란에 입력된 값
+	var price = input.childNodes[3].lastChild.value; // 해당 행 단가란에 입력된 값
+// 	var check_box = input.lastChild.lastChild.lastChild; // 해당 행 체크 박스
 
-            var next_row = input.nextSibling // 해당 행의 다음 행
-            var next_num = input.nextSibling.childNodes[0]; // 해당 행의 다음 행 #란
-            var next_thing = input.nextSibling.childNodes[1].lastChild; // 해당 행의 다음 행 품목 입력란
-            var next_quantity = input.nextSibling.childNodes[2].lastChild; // 해당 행의 다음 행 수량 입력란
-            var next_price = input.nextSibling.childNodes[3].lastChild; // 해당 행의 다음행 단가 입력란
+	// var next_row = input.nextSibling // 해당 행의 다음 행
+	// var next_num = input.nextSibling.childNodes[0]; // 해당 행의 다음 행 #란
+	// var next_thing = input.nextSibling.childNodes[1].lastChild; // 해당 행의 다음 행 품목 입력란
+	// var next_quantity = input.nextSibling.childNodes[2].lastChild; // 해당 행의 다음 행 수량 입력란
+	// var next_price = input.nextSibling.childNodes[3].lastChild; // 해당 행의 다음행 단가 입력란
 
-            if (num.innerHTML) { // 해당 행이 활성화되어있다면
-                check_box.disabled = false;
-            } else {
-                check_box.checked = false;
-                check_box.disabled = true;
-            }
+// 	if (num.innerHTML) { // 해당 행이 활성화되어있다면
+// 		check_box.disabled = false;
+// 	} else {
+// 		check_box.checked = false;
+// 		check_box.disabled = true;
+// 	}
 
-            if (thing & quantity & price) { // 해당 행의 모든 란을 기입했다면 다음 행 활성화
-                next_num.innerHTML = next_row.rowIndex;
-                next_thing.disabled = false;
-                next_quantity.disabled = false;
-                next_price.disabled = false;
-            }
-        }
+	if (thing | quantity | price) {
+		num.innerHTML = current_row.rowIndex;
+// 		next_thing.disabled = false;
+// 		next_quantity.disabled = false;
+// 		next_price.disabled = false;
+	}
+}
 
-        function check_empty() {
-            var box = document.querySelectorAll('input[type=\"text\"]:not([disabled])');
-            var last_box = box.length - 1;
+// function check_empty() {
+// 	var box = document.querySelectorAll('input[type=\"text\"]:not([disabled])');
+// 	var last_box = box.length - 1;
 
-            // 첫 행에 아무 것도 입력하지 않거나 첫 행 input box 3개 중 2개 이하만 채움 
-            if (box.length == 3) {
-                return true;
-            }
+// 	// 첫 행에 아무 것도 입력하지 않거나 첫 행 input box 3개 중 2개 이하만 채움 
+// 	if (box.length == 3) {
+// 		return true;
+// 	}
 
-            // 마지막 행에 입력된 내용이 없다면
-            if (!box[last_box].value & !box[last_box-1].value & !box[last_box-2].value) { 
-                // 마지막 행에 있는 input box를 제외하고 비어있는 input box가 있는지 검사
-                for (var i = 0; i < box.length - 3; i++) { 
-                    if (!box[i].value) {
-                        return true;
-                    }
-                }
-                return false; 
-            // 최소한 마지막 행을 채우지 않음
-            } else { 
-                return true;
-            }
-        }
+// 	// 마지막 행에 입력된 내용이 없다면
+// 	if (!box[last_box].value & !box[last_box-1].value & !box[last_box-2].value) { 
+// 		// 마지막 행에 있는 input box를 제외하고 비어있는 input box가 있는지 검사
+// 		for (var i = 0; i < box.length - 3; i++) { 
+// 			if (!box[i].value) {
+// 				return true;
+// 			}
+// 		}
+// 		return false; 
+// 	// 최소한 마지막 행을 채우지 않음
+// 	} else { 
+// 		return true;
+// 	}
+// }
 
-        function click_save() {
-            var status = document.getElementById('status').innerHTML;
-            var empty = check_empty();
+function click_save() {
+	var status = document.getElementById('status').innerHTML;
+	// var empty = check_empty();
 
-            if (status == '제출' | status == '확인 완료') {
-                alert('이미 저장되어있습니다.');
-            } else if (empty == true) {
-                alert("비어있는 란이 있습니다! 다시 한 번 확인해주세요.");
-            } else {
-                // 저장
-                alert("지금까지 입력/수정하신 내용을 저장하였습니다!");
-            }
-        }
+	if (status == '제출' | status == '확인 완료') {
+		alert('이미 저장되어있습니다.');
+	// } else if (empty == true) {
+	// 	alert("비어있는 란이 있습니다! 다시 한 번 확인해주세요.");
+	} else {
+		// 저장
+		alert("지금까지 입력/수정하신 내용을 저장하였습니다!");
+	}
+}
 
-        function click_delete() {
-            var status = document.getElementById('status').innerHTML;
+function click_delete() {
+	var status = document.getElementById('status').innerHTML;
 
-            if (status == '제출' | status == '확인완료') {
-                alert("이미 제출하셨기 때문에 삭제할 수 없습니다.");
-                return;
-            }
+	if (status == '제출' | status == '확인완료') {
+		alert("이미 제출하셨기 때문에 삭제할 수 없습니다.");
+		return;
+	}
 
-            var answer = confirm("정말로 삭제하시겠습니까?");
+	var answer = confirm("정말로 삭제하시겠습니까?");
 
-            if (answer == false) {
-                return;
-            } else {
-                var parent = document.querySelector('#table tbody');	
-                var check_box = document.querySelectorAll('input[type=\"checkbox\"]:checked');
-                var tr = document.querySelectorAll('#table tbody tr');
-                var active = document.querySelectorAll('#table tbody tr input[type=\"text\"]:not([disabled])');
-                var default_row_len = 18;
-                var count = 0;
+	if (answer == false) {
+		return;
+	} else {
+		var parent = document.querySelector('#table tbody');	
+		var check_box = document.querySelectorAll('input[type=\"checkbox\"]:checked');
+		var tr = document.querySelectorAll('#table tbody tr');
+		var active = document.querySelectorAll('#table tbody tr input[type=\"text\"]:not([disabled])');
+		var default_row_len = 18;
+		var count = 0;
 
-                // 체크한 행 삭제
-                for (var i = 0; i < check_box.length; i++) {
-                    var checked_tr = check_box[i].parentNode.parentNode.parentNode;
+		// 체크한 행 삭제
+		for (var i = 0; i < check_box.length; i++) {
+			var checked_tr = check_box[i].parentNode.parentNode.parentNode;
 
-                    // 활성화된 행이 첫번째 행 하나 밖에 없는데 삭제하려는 경우 or 활성화된 모든 행을 삭제하려는 경우
-                    if ((check_box.length == 1 & active.length == 3) | (((check_box.length*3) == active.length) & i == 0)) { 
-                        // 첫번째 행을 삭제하지 않고 해당 행을 비우기만 함
-                        active[0].value = "";
-                        active[1].value = "";
-                        active[2].value = "";
-                        tr[0].childNodes[4].lastChild.innerHTML = "";
-                        check_box[0].checked = false;
-                        count += 1;
-                    } else {
-                        parent.removeChild(checked_tr);
-                        count += 1;
+			// // 활성화된 행이 첫번째 행 하나 밖에 없는데 삭제하려는 경우 or 활성화된 모든 행을 삭제하려는 경우
+			// if ((check_box.length == 1 & active.length == 3) | (((check_box.length*3) == active.length) & i == 0)) { 
+			// 	// 첫번째 행을 삭제하지 않고 해당 행을 비우기만 함
+			// 	active[0].value = "";
+			// 	active[1].value = "";
+			// 	active[2].value = "";
+			// 	tr[0].childNodes[4].lastChild.innerHTML = "";
+			// 	check_box[0].checked = false;
+			// 	count += 1;
+			// } else {
+			parent.removeChild(checked_tr);
+			count += 1;
 
-                        tr = document.querySelectorAll('#table tbody tr');
-                        if (tr.length <= default_row_len) {
-                            add_col();
-                        }
-                    }
-                }
+			tr = document.querySelectorAll('#table tbody tr');
+			if (tr.length <= default_row_len) {
+				add_col();
+			}
+		}
 
-                // 행 번호 다시 부여
-                for (var i = 1; i < tr.length - 1; i++) {	
-                    if (tr[i].childNodes[0].innerHTML) {
-                        tr[i].childNodes[0].innerHTML = tr[i].rowIndex;
-                    }
-                }
+		// 행 번호 다시 부여
+		for (var i = 1; i < tr.length - 1; i++) {	
+			if (tr[i].childNodes[0].innerHTML) {
+				tr[i].childNodes[0].innerHTML = tr[i].rowIndex;
+			}
+		}
 
-                sum_total();
+		sum_total();
 
-                if (count == 0) {
-                    alert('삭제할 항목을 체크해주세요!');
-                } else {
-                    alert(count + '건이 삭제되었습니다.');
-                }
-            }
-        }
+		if (count == 0) {
+			alert('삭제할 항목을 체크해주세요!');
+		} else {
+			alert(count + '건이 삭제되었습니다.');
+		}
+	}
+}
 
-         function click_submit() {
-            var empty = check_empty();
+function click_submit() {
+	// var empty = check_empty();
 
-            if (empty == true) {
-                alert("비어있는 란이 있습니다! 다시 한 번 확인해주세요.");
-            } else {
-                // 저장 후
-                // 제출
-                // status를 제출로 변경
-                alert("입력하신 내용을 저장 후 제출하였습니다!");
-            }
-        }
+	alert("입력하신 내용을 저장 후 제출하였습니다!");
+
+	// if (empty == true) {
+	// 	alert("비어있는 란이 있습니다! 다시 한 번 확인해주세요.");
+	// } else {
+	// 	// 저장 후
+	// 	// 제출
+	// 	// status를 제출로 변경
+	// 	alert("입력하신 내용을 저장 후 제출하였습니다!");
+	// }
+}
     </script>
  {% endblock %}
  </body>

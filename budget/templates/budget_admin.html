@@ -329,7 +329,15 @@ button:not(:last-child) {
 				<th>예산액</th>
 				<th>예산안</th>
 			</tr>
+            <tr>
+            
+            {% for user in form %}
+
+               <td>{{user.groupname}}</td>
+            {% endfor %}   
+            </tr>
 			<tr>
+                
 				<td></td>
 				<td><input type="text" name="groupname" id="groupname"></td>
 				<td><input type="text" name="groupnum" id="groupnum"></td>

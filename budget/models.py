@@ -9,7 +9,7 @@ class Budget_list(models.Model):
     price=models.IntegerField(max_length=20)
     qxp=models.IntegerField(max_length=25)
     check=models.CharField(max_length=2)
-    status=models.CharField(max_length=5)
+    
     
     def __str__(self):
         return self.item
