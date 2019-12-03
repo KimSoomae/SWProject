@@ -12,7 +12,7 @@ class ProfileForm(forms.ModelForm):
         labels={
             'studentnum':('학번'),
             'groupname':('소속 동아리'),
-            'major':('소속 동아리 분과'),
+            'major':('소속 학과'),
             'name':('이름'),
         }
 

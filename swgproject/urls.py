@@ -27,6 +27,7 @@ urlpatterns = [
     #path('budget/',include ('budget.urls')),
     path('',views.home, name="home"),
     path('budget',views.budget,name="budget"),
+    path('budget_master',views.budget_master,name="budget_master"),
     
 
 ] 

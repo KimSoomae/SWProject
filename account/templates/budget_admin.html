@@ -312,7 +312,7 @@ button:not(:last-child) {
 			<ul>
 				<li><a href="#">공지게시판</a></li>
 				<li><a href="#">회원관리</a></li>
-				<li><a href="#">예산관리</a></li>
+				<li><a href="{% url 'budget' %}">예산관리</a></li>
 				<li><a href="#">지출관리</a></li>
 				<li><a href="#">강의실예약</a></li>
 			</ul>
@@ -320,6 +320,7 @@ button:not(:last-child) {
 	</header>
 	<section>
 		<h3><span id="club">예산 관리(관리자)</span></h3>
+		<a href="{% url 'budget_master' %}">예산승인</a>
 		<hr></hr>
 		<table>
 			<tr>
@@ -329,135 +330,29 @@ button:not(:last-child) {
 				<th>예산액</th>
 				<th>예산안</th>
 			</tr>
-            <tr>
+             {% for user in budget_user %}
+			<tr>
+               
+					<td></td>
+					<td>{{user.groupname_budget}}</td>
+					<td>회원수</td>
+					<td><b>￦</b><!--총 예산액-->></td>
+					<td> <!--제출상태--> </td>
+					
+			</tr>
+			{% endfor %} 
+			<tr>
+				<td></td>
+				<td>user한테 받은 동아리이름</td>
+				<td>회원수</td>
+				<td>총액</td>
+                <td> <select>
+                        <option value="submit">제출</option>
+                        <option value="complete">확인완료</option>
+                        <option value="reject">반려</option>
+                        </select></td>
+			</tr>
             
-            {% for user in form %}
-
-               <td>{{user.groupname}}</td>
-            {% endfor %}   
-            </tr>
-			<tr>
-                
-				<td></td>
-				<td><input type="text" name="groupname" id="groupname"></td>
-				<td><input type="text" name="groupnum" id="groupnum"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="text" name="groupname" id="groupname"></td>
-				<td><input type="text" name="groupnum" id="groupnum"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
-            <tr>
-				<td></td>
-				<td><input type="text" name="groupname" id="groupname"></td>
-				<td><input type="text" name="groupnum" id="groupnum"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
-            <tr>
-				<td></td>
-				<td><input type="text" name="groupname" id="groupname"></td>
-				<td><input type="text" name="groupnum" id="groupnum"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
-            <tr>
-				<td></td>
-				<td><input type="text" name="groupname" id="groupname"></td>
-				<td><input type="text" name="groupnum" id="groupnum"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
-            <tr>
-				<td></td>
-				<td><input type="text" name="groupname" id="groupname"></td>
-				<td><input type="text" name="groupnum" id="groupnum"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
-            <tr>
-				<td></td>
-				<td><input type="text" name="groupname" id="groupname"></td>
-				<td><input type="text" name="groupnum" id="groupnum"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
-            <tr>
-				<td></td>
-				<td><input type="text" name="groupname" id="groupname"></td>
-				<td><input type="text" name="groupnum" id="groupnum"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
-            <tr>
-				<td></td>
-				<td><input type="text" name="groupname" id="groupname"></td>
-				<td><input type="text" name="groupnum" id="groupnum"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
-            <tr>
-				<td></td>
-				<td><input type="text" name="groupname" id="groupname"></td>
-				<td><input type="text" name="groupnum" id="groupnum"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
-            <tr>
-				<td></td>
-				<td><input type="text" name="groupname" id="groupname"></td>
-				<td><input type="text" name="groupnum" id="groupnum"></td>
-				<td><b>￦</b><input type="text" name="price" id="price"></td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
 
 			<tr>
 				<td colspan="3">총 액</td>

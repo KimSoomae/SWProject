@@ -16,7 +16,9 @@ class Budget_list(models.Model):
     quantity=models.IntegerField(max_length=5)
     price=models.IntegerField(max_length=20)
     qxp=models.IntegerField(max_length=25)
-    check=models.CharField(max_length=2)
+    total=models.IntegerField(max_length=10)
+    groupname_budget=models.CharField(max_length=20)
+    
     
     
     def __str__(self):

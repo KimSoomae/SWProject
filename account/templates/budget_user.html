@@ -405,12 +405,20 @@ footer {
 	</header>
 	<section>
 		<h3><span id="club">동아리</span> 예산안</h3>
+		<form class="form-signin" method = "POST" action="{%url 'budget'%}">
+                {% csrf_token %}
+				<input name="groupname_budget" type="text" value="" placeholder="동아리명">
+				<input class="btn btn-5" type="submit" value="짜증나">   
+		</form>
 		<hr></hr>
 		<div id="table_area"></div>
 		<p class="info">* 상태 : <span id="status">미제출</span></p>
 		<div class="button">
 			<button type="button" onclick="click_save();">저장</button>
 			<button type="button" onclick="click_delete();">삭제</button>
+			<div class="buttonform">
+           		 <input type="submit" class = "btn" id="clickMe" value="제출">
+			</div>
 			<button type="button" onclick="click_submit();">제출</button>
 		</div>
 	</section>
@@ -423,24 +431,29 @@ footer {
 	tag += "<table id=\"table\">";
 	tag += "<thead><tr><th>#</th><th>품목</th><th>수량</th><th>단가</th><th>수량X단가</th><th>V</th></tr></thead>";
 	tag += "<tbody>";
-	for (var i=0; i < 18; i++) {
-		tag += "<tr onkeyup=\"set_col(this);\">";
-		if (i == 0) {
-			tag += "<td class=\"num\"></td>";
-			tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
-			tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
-			tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
-		} else {
-			tag += "<td class=\"num\"></td>";
-			tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
-			tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
-			tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
-		}
-		tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
-		tag += "<td><div class=\"check\"><input type=\"checkbox\" name=\"delete\"></div></td>";
-		tag += "</tr>";
-	}
-	tag += "<tr><td colspan=\"3\">총 액</td><td colspan=\"3\" id=\"total\"></td></tr>";
+	tag += "<form method=\"POST\" action=\"{%url 'budget'%}\">";
+			
+			
+	
+			for (var i=0; i < 18; i++) {
+				tag += "<tr onkeyup=\"set_col(this);\">";
+				if (i == 0) {
+					tag += "<td class=\"num\"></td>";
+					tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
+					tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+					tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+				} else {
+					tag += "<td class=\"num\"></td>";
+					tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
+					tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+					tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+				}
+				tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
+				tag += "<td><div class=\"check\"><input type=\"checkbox\" name=\"delete\"></div></td>";
+				tag += "</tr>";
+			}
+			tag += "<tr><td colspan=\"3\">총 액</td><td colspan=\"3\" id=\"total\"></td></tr>";
+	tag += "</form>";
 	tag += "</tbody>";
 	tag += "</table>";
 

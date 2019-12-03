@@ -64,11 +64,17 @@ def budget(request):
     if request.user.is_superuser:
             return render(request,'budget_admin.html')
     else:
-        budget_user=Budget_list.objects.all()
-        context={'budget_user': budget_user}
-        try:
-            budgetusers=Budget_list(num=request.POST['num'], item=request.POST['item'],quantity=request.POST['quantity'],price=request.POST['price'],qxp=request.POST['qxp'],check=request.POST['check'] )
-            budgetusers.save()
-        except:
-            budgetusers=None
-        return render(request,'budget_user.html',context)
+        if request.method == 'POST':
+        
+            budget_user=Budget_list.objects.all()
+            context={'budget_user': budget_user}
+            try:
+                budgetusers=Budget_list(num=request.POST['num'], item=request.POST['item'],quantity=request.POST['quantity'],price=request.POST['price'],qxp=request.POST['qxp'],total=request.POST['total'],groupname_budget=request.POST['groupname_budget'] )
+                budgetusers.save()
+            except:
+                budgetusers=None
+            return render(request,'budget_user.html',context)
+        return render(request,'budget_user.html')
+
+def budget_master(request):
+    return render(request,'budget_master_check.html')

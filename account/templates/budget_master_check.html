@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="budget_user.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+	<link rel="icon" href="img/hufscus3.png">
+
+	<title>동아리연합회관리시스템</title>
+</head>
+<style>
+   :root {
+	--main-color: #142C46;
+	--accent-color: #8D7050;
+	--footer-color: #403E3F;
+}
+
+@font-face {
+	font-family: "한국외대체 M";
+	src: local(한국외대체 M);
+}
+
+@font-face {
+	font-family: "한국외대체 L";
+	src: local(한국외대체 L);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+body {
+	margin: 0 auto;
+}
+
+
+a {
+	text-decoration: none !important;;
+}
+
+header {
+	top: 0;
+	width: 100%;
+	display: grid;
+	grid-template-rows: 45px 116px;
+	border-bottom: 1.2px solid #949293;
+}
+
+.top {
+	background-color: var(--main-color);
+	border-bottom: 5.5px solid var(--accent-color);
+}
+
+.top ul {
+	display: flex;
+	width: 1000px;
+	margin: 0 auto;
+	justify-content: flex-end;
+}
+
+.top ul li {
+	list-style: none;
+	border-left: 1px solid white;
+	padding: 0px 20px 0px 20px;
+	margin-top: 8px;
+}
+
+.top ul li:first-child {
+	border-left: none;
+}
+
+.top ul li a {
+	font-family: "한국외대체 M";
+	font-size: 18px;
+	color: white;
+}
+
+.logo {
+	display: grid;
+	grid-template-columns: 100px 270px;
+    grid-template-rows: 60px 40px;
+	font-family: "한국외대체 B";
+	padding-top: 11px;
+	justify-content: center;
+}
+
+#logo1 {
+	grid-row-start: 1;
+	grid-row-end: 3;
+}
+
+#logo1 img {
+	width: 95px;
+	height: 95px;
+}
+
+#logo2 {
+	font-size: 42pt;
+}
+
+#logo2 #hufs {
+	color: var(--main-color)
+}
+
+#logo2 #cus {
+	color: var(--accent-color)
+}
+
+#logo3 {
+	font-size: 15pt;
+	color: var(--main-color);
+}
+
+#logo3 a {
+	color: inherit;
+}
+
+.menu ul {
+	display: flex;
+	justify-content: center;
+	border-top: 1.2px solid #949293;
+}
+
+.menu ul li {
+	list-style: none;
+	border-left: 1px solid #949293;
+	padding: 0px 40px 0px 40px;
+	margin: 8px 0px 8px 0px;
+}
+
+.menu ul li:first-child {
+	border-left: none;
+}
+
+.menu ul li a {
+	font-family: "한국외대체 B";
+	font-size: 20px;
+	color: var(--footer-color);
+}
+
+section {
+	width: 1000px;
+	margin: auto;
+	margin-top: 45px;
+}
+
+h3 {
+	font-size: 20px;
+	font-family: "한국외대체 M";
+	font-weight: normal;
+	color: var(--accent-color);
+	margin-left: 10px;
+	margin-bottom: 7px;
+}
+
+hr {
+	border: solid 1.2px var(--accent-color);
+	margin-bottom: 25px;
+}
+
+input[type="text"]:disabled {
+  background: #ebebeb;
+  border: 0.5px solid #a9a9a9;
+}
+
+table {
+	width: 970px;
+	border-collapse: collapse;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+table th, table td {
+	border: solid 0.5px gray;
+	line-height: 33px;
+}
+
+table th {
+	color: white;
+	font-family: "한국외대체 M";
+	font-weight: normal;
+	font-size: 16px;
+	text-align: center;
+	background-color: var(--main-color);
+}
+
+table th:nth-child(1), table td:nth-child(1) {
+	width: 50.4px;
+}
+
+table th:nth-child(2), table td:nth-child(2) {
+	width: 461.6px;
+}
+
+table th:nth-child(3), table td:nth-child(3) {
+	width: 75.2px;
+}
+
+table th:nth-child(4), table td:nth-child(4) {
+	width: 150.4px
+}
+
+table th:nth-child(5), table td:nth-child(5) {
+	width: 180.8px
+}
+
+table th:nth-child(6), table td:nth-child(5) {
+	width: 50.4px;
+}
+
+table tbody {
+/*	display: block;
+*/	overflow-y: auto;
+	overflow-x: hidden;
+	height: 202px;
+}
+
+table td {
+	text-align: center;
+	font-family: "한국외대체 L";
+	font-weight: bold;
+	font-size: 14px;
+}
+
+td b {
+	float: left;
+	margin-left: 10px;
+}
+
+input[type="text"] {
+	margin: 0px;
+	outline-style: none;
+	font-family: "한국외대체 L";
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.item {
+	width: 442px;
+	padding-left: 3px;
+}
+
+.quantity {
+	width: 60px;
+	text-align: center;
+}
+
+.price {
+	width: 107px;
+	text-align: center;
+	padding-right: 3px;
+}
+
+.qxp {
+	width: 137px;
+	text-align: center;
+	padding-right: 3px;
+}
+
+input[type="checkbox"] {
+	width: 23px;
+	height: 23px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.check {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.info {
+	font-family: "한국외대체 L";
+}
+
+#status {
+	color: red;
+	font-weight: bold;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+button {
+	width: 77px;
+	height: 40px;
+	border: none;
+	border-radius: 3px;
+	background-color: var(--main-color);
+	color: white;
+	font-size: 16px;
+	font-family: "한국외대체 M";
+	cursor: pointer;
+	margin-top: 30px;
+}
+
+button:hover {
+	background-color: var(--accent-color);
+	transition: 1s;
+}
+
+button:not(:last-child) {
+	margin-right: 25px; 
+}
+
+footer {
+	display: grid;
+	grid-template-columns: 425px 575px;
+	grid-template-rows: 120px 20px;
+	bottom: 0;
+	width: 100%;
+	height: 160px;
+	color: white;
+	font-size: 11pt;
+	padding-top: 15px;
+	margin-top: 80px;
+	background-color: var(--footer-color);
+	justify-content: center;
+}
+
+.university {
+	display: grid;
+	grid-template-columns: 100px 290px;
+	grid-template-rows: 68px 35px;
+}
+
+.club_union {
+	display: grid;
+	grid-template-columns: 100px 450px;
+	grid-template-rows: 68px 35px;
+}
+
+.footer_logo {
+	grid-row-start: 1;
+	grid-row-end: 3;
+	margin-top: 8px;
+}
+
+.footer_logo > img {
+	width: 80px;
+	height: 80px;
+	align-items: center;
+}
+
+.intro p {
+	line-height: 135%;
+}
+
+.sns ul {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-position: inside;
+}
+
+.sns a {
+	display: block;
+	margin: 0px 10px 0px 3px;
+	padding: 0;
+	color: inherit;
+	font-size: 15px;
+	text-decoration: none;
+	border : solid 1px currentColor;
+	width: 2em;
+	line-height: 2em;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.sns a:hover {
+	background-color: var(--accent-color);
+	transition: 1s;
+}
+
+#copyright {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	text-align: center;
+}
+</style>
+<body>
+    <script src="budget_user.js"></script>
+	<header>
+		{% extends 'base.html' %}
+
+        {% block content %} 
+		<div class="menu">
+			<ul>
+				<li><a href="#">공지게시판</a></li>
+				<li><a href="#">회원관리</a></li>
+				<li><a href="{% url 'budget' %}">예산관리</a></li>
+				<li><a href="#">지출관리</a></li>
+				<li><a href="#">강의실예약</a></li>
+			</ul>
+		</div>
+	</header>
+	<section>
+		<h3><span class="club">칠하담</span> 예산안</h3>
+		<hr></hr>
+		<div id="table_area"></div>
+		<div class="button">
+			<button type="button" onclick="confirm();">확인 완료</button>
+			<button type="button" onclick="reject();">반려</button>
+		</div>
+	</section>
+    <script type="text/javascript">
+        window.onload = function create_table() {
+            var tag = "";
+            
+            tag += "<table>";
+            tag += "<thead><tr><th>#</th><th>품목</th><th>수량</th><th>단가</th><th>수량X단가</th></tr></thead>";
+            for (var i=0; i < 18; i++) {
+                tag += "<tr>";
+                tag += "<td class=\"num\"></td>";
+                tag += "<td></td>";
+                tag += "<td></td>";
+                tag += "<td><b>￦</b></td>";
+                tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
+                tag += "</tr>";
+            }
+            tag += "<tr><td colspan=\"3\">총 액</td><td colspan=\"2\" id=\"total\"></td></tr>";
+            tag += "<tr><td colspan=\"3\">2019학년도 2학기 <span class=\"club\">칠하담</span> 예산 입력</td><td colspan=\"2\"><b>￦</b><input type=\"text\" name=\"budget\" id=\"budget\" oninput=\"only_num(this);\"></td></tr>";
+            tag += "</table>";
+
+            document.getElementById('table_area').innerHTML = tag;
+        }
+
+        function only_num(input) {
+            input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+        } // 출처 : https://stackoverflow.com/questions/469357/html-text-input-allow-only-numeric-input/28838789#28838789
+
+        function confirm() {
+            var budget = document.getElementById('budget').value;
+
+            if (!budget) {
+                alert('예산을 입력해주세요!');
+            } else {
+                alert('입력하신 예산이 반영되었습니다.');
+            }
+        }
+
+        function reject() {
+            var reason = prompt("반려하시겠습니까? 사유를 입력해주세요.");
+            
+            if (reason == null) { // 취소를 클릭함
+                return;
+            } else if (!reason) { // 확인을 클릭했지만 사유를 입력하지 않음
+                alert('사유를 입력해주세요!');
+            } else {
+                // status를 반려로 변경?
+                alert('해당 예산안이 반려되었습니다.')
+            }
+        }
+    </script>
+     {% endblock %}
+ </body>
+ </html>
