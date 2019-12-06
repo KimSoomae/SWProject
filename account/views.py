@@ -8,6 +8,7 @@ from .forms import UserCreationMultiForm,UserCreationForm
 from .models import profile
 from . import views
 from .models import Budget_list
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -62,19 +63,92 @@ def home(request, teamList=None):
 
 def budget(request):
     if request.user.is_superuser:
-            return render(request,'budget_admin.html')
+        budget_user=Budget_list.objects.all()
+        for i in range(len(budget_user)):
+            priceTempList = budget_user[i].price.split('-')
+            quantityTempList = budget_user[i].quantity.split('-')
+            budget_user[i].total_price = 0
+            print(priceTempList, quantityTempList)
+            for j in range(len(priceTempList)):
+                if(priceTempList[j] != '' and quantityTempList[j] != ''):
+                    budget_user[i].total_price += int(priceTempList[j]) * int(quantityTempList[j])
+            
+        context={'budget_user': budget_user}
+        return render(request,'budget_admin.html',context)
     else:
         if request.method == 'POST':
-        
+            print('All',request.POST)
+            allPrice = request.POST.getlist('price')
+            allQuantity = request.POST.getlist('quantity')
+            # allQXP = []
+            # for i in range(len(allPrice)):
+            #     temp = int(allPrice[i]) * int(allQuantity[i])
+            #     numberedString = str(temp)
+            #     allQXP.append(numberedString)
+            # print(allQXP)
+
+
+            quantityString = '-'.join(request.POST.getlist('quantity'))
+            itemString = '-'.join(request.POST.getlist('item'))
+            priceString = '-'.join(request.POST.getlist('price'))
+            
+
+            print(quantityString, itemString, priceString)
+
             budget_user=Budget_list.objects.all()
             context={'budget_user': budget_user}
             try:
-                budgetusers=Budget_list(num=request.POST['num'], item=request.POST['item'],quantity=request.POST['quantity'],price=request.POST['price'],qxp=request.POST['qxp'],total=request.POST['total'],groupname_budget=request.POST['groupname_budget'] )
+                print('saved?')
+                budgetusers=Budget_list(num='', item=itemString, quantity=quantityString ,price=priceString, qxp='', total='' ,groupname_budget=request.POST['groupname_budget'], people=request.POST['people'] )
                 budgetusers.save()
+                print('saved')
             except:
+                print('not saved')
                 budgetusers=None
+                print('not saved')
             return render(request,'budget_user.html',context)
         return render(request,'budget_user.html')
 
-def budget_master(request):
-    return render(request,'budget_master_check.html')
+def budget_master(request,groupname_budget):
+    budget_user=Budget_list.objects.filter(groupname_budget=groupname_budget)
+    context={'budget_user': budget_user, 'groupname_budget':groupname_budget }
+    print(budget_user[0].state)
+    item = budget_user[0].item.split('-')
+    quantity = budget_user[0].quantity.split('-')
+    price = budget_user[0].price.split('-')
+    leng = len(item)
+    index = 0
+    result = []
+    while index != leng:
+        temp = {
+            'item' : item[index],
+            'price' : price[index],
+            'quantity' : quantity[index]
+        }
+        result.append(temp)
+        index += 1
+    
+    context = {
+        'result' : result,
+        'groupname_budget':groupname_budget        
+    }
+    return render(request,'budget_master_check.html',context)
+
+def confirm_budget(request,groupname_budget):
+    budget_user=Budget_list.objects.filter(groupname_budget=groupname_budget)
+    # if request.method=='POST':
+    print(budget_user[0].state)
+    budget_user[0].state='승인완료'
+    print('승인됨')
+    print(budget_user[0].state)
+
+    return render(request,'budget_admin.html')
+
+def reject_budget(request,groupname_budget):
+    budget_user=Budget_list.objects.filter(groupname_budget=groupname_budget)
+    budget_user[0].state='반려';
+    budgetusers.save()
+    return render(request,'budget_admin.html')
+    
+
+    

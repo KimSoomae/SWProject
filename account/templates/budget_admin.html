@@ -320,38 +320,26 @@ button:not(:last-child) {
 	</header>
 	<section>
 		<h3><span id="club">예산 관리(관리자)</span></h3>
-		<a href="{% url 'budget_master' %}">예산승인</a>
 		<hr></hr>
 		<table>
 			<tr>
 				<th>#</th>
 				<th>동아리명</th>
 				<th>회원수</th>
-				<th>예산액</th>
+				<th>예산액 (총액)</th>
 				<th>예산안</th>
 			</tr>
-             {% for user in budget_user %}
+             {% for group in budget_user %}
 			<tr>
-               
 					<td></td>
-					<td>{{user.groupname_budget}}</td>
-					<td>회원수</td>
-					<td><b>￦</b><!--총 예산액-->></td>
-					<td> <!--제출상태--> </td>
+					<td><a href="{% url 'budget_master' group.groupname_budget %}">{{group.groupname_budget}}</a></td>
+					<td>{{group.people}}</td>
+					<td>W {{group.total_price}}</td>
+                    <td>{{group.state}} </td>
+                       
 					
 			</tr>
 			{% endfor %} 
-			<tr>
-				<td></td>
-				<td>user한테 받은 동아리이름</td>
-				<td>회원수</td>
-				<td>총액</td>
-                <td> <select>
-                        <option value="submit">제출</option>
-                        <option value="complete">확인완료</option>
-                        <option value="reject">반려</option>
-                        </select></td>
-			</tr>
             
 
 			<tr>

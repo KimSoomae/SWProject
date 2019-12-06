@@ -6,6 +6,7 @@ urlpatterns=[
     path('logout/', views.logout, name='logout'),
     path('',views.home, name="home"),
     path('budget',views.budget,name="budget"),
-    path('budget_master',views.budget_master,name="budget_master"),
+    path(r'^budget_master/(?P<groupname_budget>.+)', views.budget_master),
+    #path('budget_master',views.budget_master,name="budget_master"),
 
 ]

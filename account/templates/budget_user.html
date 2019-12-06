@@ -289,7 +289,7 @@ input[type="checkbox"] {
 	align-items: center;
 }
 
-button {
+.btn {
 	width: 77px;
 	height: 40px;
 	border: none;
@@ -300,6 +300,7 @@ button {
 	font-family: "한국외대체 M";
 	cursor: pointer;
 	margin-top: 30px;
+    text-align: center;
 }
 
 button:hover {
@@ -405,59 +406,401 @@ footer {
 	</header>
 	<section>
 		<h3><span id="club">동아리</span> 예산안</h3>
-		<form class="form-signin" method = "POST" action="{%url 'budget'%}">
-                {% csrf_token %}
-				<input name="groupname_budget" type="text" value="" placeholder="동아리명">
-				<input class="btn btn-5" type="submit" value="짜증나">   
-		</form>
 		<hr></hr>
-		<div id="table_area"></div>
-		<p class="info">* 상태 : <span id="status">미제출</span></p>
-		<div class="button">
-			<button type="button" onclick="click_save();">저장</button>
-			<button type="button" onclick="click_delete();">삭제</button>
-			<div class="buttonform">
-           		 <input type="submit" class = "btn" id="clickMe" value="제출">
-			</div>
-			<button type="button" onclick="click_submit();">제출</button>
-		</div>
+        <div id="table_area">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>품목</th>
+                        <th>수량</th>
+                        <th>단가</th>
+                        <th>수량X단가</th>
+                        <th>V</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <form method="POST" action="/budget">
+                      {% csrf_token %}
+									<input name="groupname_budget" type="text" value="" placeholder="동아리명">
+									<input name="people" type="text" value="" placeholder="인원 수" onkeypress="onlyNumber()">
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr onkeyup="set_col(this);">
+										<td class="num"></td>
+										<td>
+											<input type="text" name="item" class="item">
+										</td>
+										<td>
+											<input type="text" name="quantity" class="quantity" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b>
+											<input type="text" name="price" class="price" onkeyup="sum_qxp(this);" oninput="only_num(this);">
+										</td>
+										<td><b>￦</b><span class="qxp"></span></td>
+										<td>
+											<div class="check">
+												<input type="checkbox" name="delete">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="3">총 액</td>
+										<td colspan="3" id="total"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<p class="info">* 상태 : <span id="status">미제출</span></p>
+						<div class="button">
+							<button class="btn" type="button" onclick="click_save();">저장</button>
+							<button class="btn" onclick="click_delete();">삭제</button>
+							<input type="submit" class="btn" value="제출!" type="제출" onclick="click_submit();">
+							
+						</div>
+        </form>
 	</section>
     <script type="text/javascript">
         window.onload = function create_table() {
 	var status = document.getElementById('status').innerHTML;
 	var box = document.getElementsByTagName('input');
-	var tag = "";
+	
+    
+    /* var tag = "";
 	
 	tag += "<table id=\"table\">";
 	tag += "<thead><tr><th>#</th><th>품목</th><th>수량</th><th>단가</th><th>수량X단가</th><th>V</th></tr></thead>";
 	tag += "<tbody>";
-	tag += "<form method=\"POST\" action=\"{%url 'budget'%}\">";
-			
-			
-	
-			for (var i=0; i < 18; i++) {
-				tag += "<tr onkeyup=\"set_col(this);\">";
-				if (i == 0) {
-					tag += "<td class=\"num\"></td>";
-					tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
-					tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
-					tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
-				} else {
-					tag += "<td class=\"num\"></td>";
-					tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
-					tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
-					tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
-				}
-				tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
-				tag += "<td><div class=\"check\"><input type=\"checkbox\" name=\"delete\"></div></td>";
-				tag += "</tr>";
-			}
-			tag += "<tr><td colspan=\"3\">총 액</td><td colspan=\"3\" id=\"total\"></td></tr>";
-	tag += "</form>";
+	tag += "<form method=\"POST\" action=\"/budget\">";
+    for (var i=0; i < 18; i++) {
+        tag += "<tr onkeyup=\"set_col(this);\">";
+        if (i == 0) {
+            tag += "<td class=\"num\"></td>";
+            tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
+            tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+            tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+        } else {
+            tag += "<td class=\"num\"></td>";
+            tag += "<td><input type=\"text\" name=\"item\" class=\"item\"></td>";
+            tag += "<td><input type=\"text\" name=\"quantity\" class=\"quantity\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+            tag += "<td><b>￦</b><input type=\"text\" name=\"price\" class=\"price\" onkeyup=\"sum_qxp(this);\" oninput=\"only_num(this);\"></td>";
+        }
+        tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
+        tag += "<td><div class=\"check\"><input type=\"checkbox\" name=\"delete\"></div></td>";
+        tag += "</tr>";
+    }
+    tag += "<tr><td colspan=\"3\">총 액</td><td colspan=\"3\" id=\"total\"></td></tr>";
 	tag += "</tbody>";
 	tag += "</table>";
+    tag += "</form>";
 
 	document.getElementById('table_area').innerHTML = tag;
+
+    */
 
 	// 제출 상태나 확인완료 상태이면 수정을 못하도록 막음
 	if (status == '제출' | status == '확인완료') {
@@ -492,10 +835,12 @@ function sum_total() {
 }
 
 function sum_qxp(input) {
-	var parent = input.parentNode.parentNode; // 행(tr)
-	var quantity = parent.childNodes[2].lastChild.value; // 해당 행의 수량 입력값
-	var price = parent.childNodes[3].lastChild.value; // 해당 행의 가격 입력값
-	var qxp = parent.childNodes[4].lastChild // 수량과 가격을 곱한 결과를 넣을 셀
+	
+    var parent = input.parentNode.parentNode; // 행(tr)
+    var qxp = parent.childNodes[9].lastChild;
+	var thing = parent.childNodes[3].childNodes[1].value; // 해당 행 품목란에 입력된 값
+	var quantity = parent.childNodes[5].childNodes[1].value; // 해당 행 수량란에 입력된 값
+	var price = parent.childNodes[7].childNodes[2].value; // 해당 행 단가란에 입력된 값
 	var sum = 0;
 	
  	if (!quantity == false & !price == false) { // 수량이나 가격 입력값이 입력되었는지 체크
@@ -534,12 +879,19 @@ function set_col(input) {
 	if (input.rowIndex == len_tr) {
 		add_col(input);
 	}
-
-	var current_row = input
+    
+	var current_row = input;
 	var num = input.childNodes[0]; // 해당 행 #란
-	var thing = input.childNodes[1].firstChild.value; // 해당 행 품목란에 입력된 값
-	var quantity = input.childNodes[2].lastChild.value; // 해당 행 수량란에 입력된 값
-	var price = input.childNodes[3].lastChild.value; // 해당 행 단가란에 입력된 값
+	var thing = input.childNodes[3].childNodes[1].value; // 해당 행 품목란에 입력된 값
+	var quantity = input.childNodes[5].childNodes[1].value; // 해당 행 수량란에 입력된 값
+	var price = input.childNodes[7].childNodes[2].value; // 해당 행 단가란에 입력된 값
+
+    // console.log(thing, quantity, price)
+
+
+
+    
+    
 // 	var check_box = input.lastChild.lastChild.lastChild; // 해당 행 체크 박스
 
 	// var next_row = input.nextSibling // 해당 행의 다음 행
@@ -675,6 +1027,11 @@ function click_submit() {
 	// 	alert("입력하신 내용을 저장 후 제출하였습니다!");
 	// }
 }
+function onlyNumber(){
+    if((event.keyCode<48)||(event.keyCode>57)) event.returnValue=false;
+
+}
+
     </script>
  {% endblock %}
  </body>

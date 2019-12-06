@@ -11,16 +11,16 @@ class profile(models.Model):
     name=models.CharField(max_length=10)
 
 class Budget_list(models.Model):
-    num=models.IntegerField(max_length=5)
-    item=models.CharField(max_length=10)
-    quantity=models.IntegerField(max_length=5)
-    price=models.IntegerField(max_length=20)
-    qxp=models.IntegerField(max_length=25)
-    total=models.IntegerField(max_length=10)
-    groupname_budget=models.CharField(max_length=20)
-    
-    
+    num=models.CharField(max_length=255)
+    item=models.CharField(max_length=255)
+    quantity=models.CharField(max_length=255)
+    price=models.CharField(max_length=255)
+    qxp=models.CharField(max_length=255)
+    total=models.CharField(max_length=255)
+    groupname_budget=models.CharField(max_length=255)
+    people=models.CharField(max_length=255, default=0)
+    state=models.CharField(max_length=10, default='대기중')
     
     def __str__(self):
-        return self.item    
+        return self.groupname_budget 
 

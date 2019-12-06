@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="budget_user.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 	<link rel="icon" href="img/hufscus3.png">
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 	<title>동아리연합회관리시스템</title>
 </head>
@@ -404,16 +405,60 @@ footer {
 		</div>
 	</header>
 	<section>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>품목</th>
+				<th>수량</th>
+				<th>가격</th>
+				<th>예산안</th>
+			</tr>
+             {% for i in result %}
+			<tr>
+					<td></td>
+					<td>{{i.item}}</td>
+					<td>{{i.quantity}}</td>
+					<td>{{i.price}}원</td>
+                    <td> 
+                       
+                    </td>
+					
+			</tr>
+			{% endfor %} 
+            
+
+			<tr>
+				<td colspan="3">총 액</td>
+				<td colspan="3"></td>
+			</tr>
+		</table>
+		<p class="info">* 전체 총 예산액은 <span id="status" {{sum}} </span>원입니다.</p>
+
+
+
 		<h3><span class="club">칠하담</span> 예산안</h3>
 		<hr></hr>
+		
+
+
+
 		<div id="table_area"></div>
-		<div class="button">
-			<button type="button" onclick="confirm();">확인 완료</button>
-			<button type="button" onclick="reject();">반려</button>
-		</div>
+
+		<form class="form-signin" method = "POST" action="{%url 'confirm_budget' groupname_budget %}">
+		{% csrf_token %}
+		
+			<div class="button">
+				<button type="submit" class="btn" value="제출">제출</button>
+				
+				
+			</div>
+		</form>
+		
+	
+
 	</section>
     <script type="text/javascript">
-        window.onload = function create_table() {
+        document.ready = function create_table() {
             var tag = "";
             
             tag += "<table>";
@@ -421,9 +466,10 @@ footer {
             for (var i=0; i < 18; i++) {
                 tag += "<tr>";
                 tag += "<td class=\"num\"></td>";
-                tag += "<td></td>";
-                tag += "<td></td>";
-                tag += "<td><b>￦</b></td>";
+                tag += "<td>" + document.getElementById("items") + "</td>";
+				console.log("<td>" + document.getElementById("items") + "</td>");
+                tag += "<td>" + document.getElementById("q").value + "</td>";
+                tag += "<td>" + document.getElementById("p").value + "</td>";
                 tag += "<td><b>￦</b><span class=\"qxp\"></span></td>"
                 tag += "</tr>";
             }
@@ -438,15 +484,16 @@ footer {
             input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
         } // 출처 : https://stackoverflow.com/questions/469357/html-text-input-allow-only-numeric-input/28838789#28838789
 
-        function confirm() {
+        {% comment %} function confirm() {
             var budget = document.getElementById('budget').value;
 
             if (!budget) {
                 alert('예산을 입력해주세요!');
             } else {
                 alert('입력하신 예산이 반영되었습니다.');
+
             }
-        }
+        } {% endcomment %}
 
         function reject() {
             var reason = prompt("반려하시겠습니까? 사유를 입력해주세요.");

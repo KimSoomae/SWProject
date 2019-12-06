@@ -9,5 +9,5 @@ class userAdmin(admin.ModelAdmin):
 admin.site.register(profile, userAdmin)
 
 class budgetAdmin(admin.ModelAdmin):
-    list_display = ('num', 'item', 'quantity', 'price', 'qxp', 'check')
+    list_display = ('num', 'item', 'quantity', 'price', 'qxp', 'groupname_budget', 'people')
 admin.site.register(Budget_list, budgetAdmin)
