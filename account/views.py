@@ -54,12 +54,8 @@ def logout(request):
         return redirect('home')
     return render(request, 'login.html')
 
-def home(request, teamList=None):
-    try:
-        TeamList = request.user.team_set.all().values()
-    except:
-        TeamList = None
-    return render(request, 'home.html',{'Teams':TeamList})
+def home(request):
+    return render(request, 'home.html')
 
 def budget(request):
     if request.user.is_superuser:
@@ -68,6 +64,7 @@ def budget(request):
             priceTempList = budget_user[i].price.split('-')
             quantityTempList = budget_user[i].quantity.split('-')
             budget_user[i].total_price = 0
+            
             print(priceTempList, quantityTempList)
             for j in range(len(priceTempList)):
                 if(priceTempList[j] != '' and quantityTempList[j] != ''):
@@ -116,39 +113,80 @@ def budget_master(request,groupname_budget):
     item = budget_user[0].item.split('-')
     quantity = budget_user[0].quantity.split('-')
     price = budget_user[0].price.split('-')
-    leng = len(item)
-    index = 0
     result = []
-    while index != leng:
+    print(item)
+    total = 0
+    for index in range(len(item)):
+        if len(item[index]) == 0:
+            break
+        qxp = int(price[index]) * int(quantity[index])
+        print(qxp)
+        total += qxp
         temp = {
             'item' : item[index],
             'price' : price[index],
-            'quantity' : quantity[index]
+            'quantity' : quantity[index],
+            'qxp' : qxp,
         }
         result.append(temp)
-        index += 1
+       
     
     context = {
         'result' : result,
-        'groupname_budget':groupname_budget        
+        'groupname_budget':groupname_budget,
+        'total' : total      
     }
     return render(request,'budget_master_check.html',context)
 
 def confirm_budget(request,groupname_budget):
-    budget_user=Budget_list.objects.filter(groupname_budget=groupname_budget)
-    # if request.method=='POST':
-    print(budget_user[0].state)
-    budget_user[0].state='승인완료'
-    print('승인됨')
-    print(budget_user[0].state)
+    budget_user=Budget_list.objects.get(groupname_budget=groupname_budget)
+    if request.method == "POST" :
+        # print(request.POST["confirm"])
+        try: 
+            request.POST["confirm"] == "confirm"
+            try:
+                # budget_user.update(state= 1 )
+                budget_user.state = 1
 
-    return render(request,'budget_admin.html')
+                print('승인버튼누름')
+                #budget_user[0].state = 1 
+                print(budget_user.state)
+                budget_user.save()
+                #for object in budget_user:
+                #    object.save()
+                
+            except:
+                pass
+        except:
+            try:
+                # budget_user.update(state= 1 )
+                budget_user.state = 2
 
-def reject_budget(request,groupname_budget):
-    budget_user=Budget_list.objects.filter(groupname_budget=groupname_budget)
-    budget_user[0].state='반려';
-    budgetusers.save()
-    return render(request,'budget_admin.html')
-    
+                print('반려버튼누름')
+                #budget_user[0].state = 1 
+                print(budget_user.state)
+                budget_user.save()
+                #for object in budget_user:
+                #    object.save()
+                
+            except:
+                pass
 
-    
+    context= {budget_user: budget_user}
+    return render(request,'budget_admin.html',context)
+
+def budget_usercheck(request):
+    if request.user.is_authenticated:
+        budget_user=Budget_list.objects.all()
+        for i in range(len(budget_user)):
+                priceTempList = budget_user[i].price.split('-')
+                quantityTempList = budget_user[i].quantity.split('-')
+                budget_user[i].total_price = 0
+                
+                print(priceTempList, quantityTempList)
+                for j in range(len(priceTempList)):
+                    if(priceTempList[j] != '' and quantityTempList[j] != ''):
+                        budget_user[i].total_price += int(priceTempList[j]) * int(quantityTempList[j])
+            
+        context={'budget_user': budget_user}
+        return render(request,'budget_usercheck.html',context)

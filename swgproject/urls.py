@@ -24,13 +24,16 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
+    path('home/logout/', views.logout, name='logout'),
+    path('home/',views.home,name="home"),
     #path('budget/',include ('budget.urls')),
     path('',views.home, name="home"),
     path('budget',views.budget,name="budget"),
     #path('budget_master',views.budget_master,name="budget_master"),
     path('budget/<groupname_budget>/budget_master',views.budget_master,name="budget_master"),
-    path('budget/<groupname_budget>',views.confirm_budget,name="confirm_budget"),
-    path('budget/<groupname_budget>',views.reject_budget,name="reject_budget"),
+    path('budget/<groupname_budget>/budget',views.confirm_budget,name="confirm_budget"),
+    #path('budget/<groupname_budget>',views.reject_budget,name="reject_budget"),
+    path('budget_usercheck',views.budget_usercheck,name="budget_usercheck"),
 
     
 

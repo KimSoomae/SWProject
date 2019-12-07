@@ -405,21 +405,22 @@ footer {
 		</div>
 	</header>
 	<section>
+		<h3>{{groupname_budget}} 예산안</h3>
 		<table>
 			<tr>
 				<th>#</th>
 				<th>품목</th>
 				<th>수량</th>
 				<th>가격</th>
-				<th>예산안</th>
+				<th>수량x가격</th>
 			</tr>
              {% for i in result %}
 			<tr>
 					<td></td>
 					<td>{{i.item}}</td>
-					<td>{{i.quantity}}</td>
-					<td>{{i.price}}원</td>
-                    <td> 
+					<td >{{i.quantity}}</td>
+					<td >{{i.price}}원</td>
+                    <td> {{i.qxp}}
                        
                     </td>
 					
@@ -429,14 +430,14 @@ footer {
 
 			<tr>
 				<td colspan="3">총 액</td>
-				<td colspan="3"></td>
+				<td colspan="3">{{total}}</td>
 			</tr>
 		</table>
-		<p class="info">* 전체 총 예산액은 <span id="status" {{sum}} </span>원입니다.</p>
+		<p class="info">* 전체 총 예산액은  {{total}} 원입니다.</p>
 
 
 
-		<h3><span class="club">칠하담</span> 예산안</h3>
+		
 		<hr></hr>
 		
 
@@ -448,17 +449,17 @@ footer {
 		{% csrf_token %}
 		
 			<div class="button">
-				<button type="submit" class="btn" value="제출">제출</button>
+				<button name="confirm" type="submit" class="btn" value="confirm">제출</button>
+				<button name="reject" type="submit" class="btn" value="reject" >반려</button>
 				
 				
 			</div>
 		</form>
-		
 	
 
 	</section>
     <script type="text/javascript">
-        document.ready = function create_table() {
+		{% comment %} function create_table() {
             var tag = "";
             
             tag += "<table>";
@@ -477,8 +478,22 @@ footer {
             tag += "<tr><td colspan=\"3\">2019학년도 2학기 <span class=\"club\">칠하담</span> 예산 입력</td><td colspan=\"2\"><b>￦</b><input type=\"text\" name=\"budget\" id=\"budget\" oninput=\"only_num(this);\"></td></tr>";
             tag += "</table>";
 
-            document.getElementById('table_area').innerHTML = tag;
-        }
+            document.getElementById('table_area').innerHTML = tag;} {% endcomment %}
+			{% comment %} $(document).ready(
+
+		function multiply(){
+			var q = document.getElementById('q').value
+			var p = document.getElementById('p').value
+			console.log(q, p)
+			var qxp= parseInt(q) * parseInt(p)
+			console.log(qxp)
+			document.getElementById('qxp').value=qxp
+		}
+
+			); {% endcomment %}
+
+
+    
 
         function only_num(input) {
             input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');

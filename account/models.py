@@ -19,7 +19,7 @@ class Budget_list(models.Model):
     total=models.CharField(max_length=255)
     groupname_budget=models.CharField(max_length=255)
     people=models.CharField(max_length=255, default=0)
-    state=models.CharField(max_length=10, default='대기중')
+    state=models.IntegerField(default=0)
     
     def __str__(self):
         return self.groupname_budget 
