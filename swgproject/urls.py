@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from account import views
-
+from django.conf.urls.static import static 
+from django.conf import settings
 
 
 urlpatterns = [
@@ -31,10 +32,10 @@ urlpatterns = [
     path('budget',views.budget,name="budget"),
     #path('budget_master',views.budget_master,name="budget_master"),
     path('budget/<groupname_budget>/budget_master',views.budget_master,name="budget_master"),
-    path('budget/<groupname_budget>/budget',views.confirm_budget,name="confirm_budget"),
+    path('<groupname_budget>',views.confirm_budget,name="confirm_budget"),
     #path('budget/<groupname_budget>',views.reject_budget,name="reject_budget"),
     path('budget_usercheck',views.budget_usercheck,name="budget_usercheck"),
 
     
 
-] 
+]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

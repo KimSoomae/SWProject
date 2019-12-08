@@ -4,33 +4,26 @@
 	--main-color: #142C46;
 	--accent-color: #8D7050;
 	--footer-color: #403E3F;
+	--th-color : #b3a88f;
 }
-
 @font-face {
 	font-family: "한국외대체 M";
 	src: local(한국외대체 M);
 }
-
 @font-face {
 	font-family: "한국외대체 L";
 	src: local(한국외대체 L);
 }
-
 * {
 	margin: 0;
 	padding: 0;
 }
-
-
 body {
 	margin: 0 auto;
 }
-
-
 a {
 	text-decoration: none !important;;
 }
-
 header {
 	top: 0;
 	width: 100%;
@@ -42,25 +35,21 @@ header {
 	background-color: var(--main-color);
 	border-bottom: 5.5px solid var(--accent-color);
 }
-
 .top ul {
 	display: flex;
 	width: 1000px;
 	margin: 0 auto;
 	justify-content: flex-end;
 }
-
 .top ul li {
 	list-style: none;
 	border-left: 1px solid white;
 	padding: 0px 20px 0px 20px;
 	margin-top: 8px;
 }
-
 .top ul li:first-child {
 	border-left: none;
 }
-
 .top ul li a {
 	font-family: "한국외대체 M";
 	font-size: 18px;
@@ -71,24 +60,20 @@ header {
 	justify-content: center;
 	border-top: 1.2px solid #949293;
 }
-
 .menu ul li {
 	list-style: none;
 	border-left: 1px solid #949293;
 	padding: 0px 40px 0px 40px;
 	margin: 8px 0px 8px 0px;
 }
-
 .menu ul li:first-child {
 	border-left: none;
 }
-
 .menu ul li a {
 	font-family: "한국외대체 B";
 	font-size: 20px;
 	color: var(--footer-color);
 }
-
 .logo {
 	display: grid;
 	grid-template-columns: 100px 270px;
@@ -97,43 +82,122 @@ header {
 	padding-top: 11px;
 	justify-content: center;
 }
-
 #logo1 {
 	grid-row-start: 1;
 	grid-row-end: 3;
 }
-
 #logo1 img {
 	width: 95px;
 	height: 95px;
 }
-
 #logo2 {
 	font-size: 42pt;
 }
-
 #logo2 #hufs {
 	color: var(--main-color)
 }
-
 #logo2 #cus {
 	color: var(--accent-color)
 }
-
 #logo3 {
 	font-size: 15pt;
 	color: var(--main-color);
 }
-
 #logo3 a {
 	color: inherit;
 }
-
+section {
+	width: 1000px;
+	margin: auto;
+	margin-top: 45px;
+}
+h3 {
+	font-size: 20px;
+	font-family: "한국외대체 M";
+	font-weight: normal;
+	color: var(--accent-color);
+	margin-left: 10px;
+	margin-bottom: 7px;
+}
+hr {
+	border: solid 1.2px var(--accent-color);
+	margin-bottom: 25px;
+}
+#notice, #reservation {
+	width: 970px;
+	border-collapse: collapse;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 32px;
+}
+table th, table td {
+	border: solid 0.5px gray;
+	line-height: 33px;
+}
+table th {
+	color: var(--th-color);
+	font-family: "한국외대체 M";
+	font-weight: normal;
+	font-size: 16px;
+	text-align: center;
+	background-color: var(--main-color);
+}
+table td {
+	font-family: "한국외대체 L";
+	font-weight: bold;
+	font-size: 14px;
+}
+.title {
+	text-align: left;
+	padding-left: 15px;
+}
+#notice th {
+	width: 60px;
+}
+#notice td:last-child {
+	width: 120px;
+	text-align: center;
+}
+#reservation td {
+	text-align: center;
+}
+#category {
+	display: grid;
+	grid-template-columns: 121.2px 121.2px 121.2px 121.2px 121.2px 121.2px 121.2px 121.2px;
+	grid-template-rows: 37px 14px;
+	width: 970px;
+	margin: auto;
+}
+.category_name {
+	display: flex;
+	border: solid 0.3px #adadad;
+	color: gray;
+	font-family: "한국외대체 M";
+	font-weight: normal;
+	font-size: 17px;
+	align-items: center;
+	justify-content: center;
+}
+.category_name:not(:first-child) {
+	border-left: none;
+}
+#list {
+	width: 947px;
+	height: 250px;
+	margin: auto;
+}
+#list > table {
+	float: left;
+	width: 175px;
+	border-collapse: collapse;
+	box-shadow: 2px 2px lightgray;
+	text-align: center;
+	margin: 7.5px;
+}
 footer {
 	display: grid;
 	grid-template-columns: 425px 575px;
 	grid-template-rows: 120px 20px;
-	position: absolute;
 	bottom: 0;
 	width: 100%;
 	height: 160px;
@@ -142,20 +206,18 @@ footer {
 	padding-top: 15px;
 	background-color: var(--footer-color);
 	justify-content: center;
+	margin-top: 40px;
 }
-
 .university {
 	display: grid;
 	grid-template-columns: 100px 290px;
 	grid-template-rows: 68px 35px;
 }
-
 .club_union {
 	display: grid;
 	grid-template-columns: 100px 450px;
 	grid-template-rows: 68px 35px;
 }
-
 .footer_logo {
 	grid-row-start: 1;
 	grid-row-end: 3;
@@ -166,11 +228,9 @@ footer {
 	height: 80px;
 	align-items: center;
 }
-
 .intro p {
 	line-height: 135%;
 }
-
 .sns ul {
 	display: flex;
 	margin: 0;
@@ -178,7 +238,6 @@ footer {
 	list-style: none;
 	list-style-position: inside;
 }
-
 .sns a {
 	display: block;
 	margin: 0px 10px 0px 3px;
@@ -192,7 +251,6 @@ footer {
 	border-radius: 50%;
 	text-align: center;
 }
-
 .sns a:hover {
 	background-color: var(--accent-color);
 	transition: 1s;
@@ -206,6 +264,69 @@ footer {
     color:white;
     padding-top:7px;
 }
+/*button*/
+.btn {
+    font-family: 'RIDIBatang';
+  color: #fff;
+  background-color:906D3B;
+  cursor: pointer;
+  // display: block;
+  font-size:16px;
+  font-weight: 400;
+  line-height: 45px;
+  margin: 0 0 2em;
+  max-width: 160px; 
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%; 
+  
+//   @media(min-width: 400px) {
+//     display: inline-block;
+//     margin-right: 2.5em;
+  
+//     &:nth-of-type(even) {
+//       margin-right: 0;
+//     }
+//   }
+  
+  @media(min-width: 600px) {
+      
+    margin: 0 1em 2em;
+  
+//     &:nth-of-type(even) {
+//       margin-right: 2.5em;
+//     }
+    
+//     &:nth-of-type(5) {
+//       margin-right: 0;
+//     }
+    
+  }
+  
+  &:hover { text-decoration: none; }
+  
+}
+
+.btn-5 {
+    text-align:center;
+    margin-left:10px;
+  border: 0 solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+  outline: 1px solid;
+  outline-color: rgba(255, 255, 255, .5);
+  outline-offset: 0px;
+  text-shadow: none;
+  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+} 
+
+.btn-5:hover {
+  border: 1px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #427388; 
+}
 </style>
 </head>
 <body>
@@ -215,6 +336,7 @@ footer {
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="main.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+	<link rel="icon" href="img/hufscus3.png">
 	<title>동아리연합회관리시스템</title>
 </head>
 <body>
@@ -237,7 +359,7 @@ footer {
 			</ul>
 		</div>
 		<div class="logo">
-			<div id="logo1" ><a href="{% url 'home' %}"><img src="img/hufscus1.png" alt="동아리연합회로고"></a></div>
+			<div id="logo1" ><a href="{% url 'home' %}"><img src="https://blogfiles.pstatic.net/MjAxOTEyMDhfMTk4/MDAxNTc1Nzc4MTQzNDE4.J4Ndd4MrOXf_buWKfSR0P3AxeWBhpV8Rbe0b_YcTkwcg.sP4NyFSNNkPL2mHlAkI9WhJAsG_yevnMpzM6sgY5OYAg.PNG.smkim104/hufscus1.png" alt="동아리연합회로고"></a></div>
 			<div id="logo2"><a href="{% url 'home' %}"><span id="hufs">HUFS</span><span id="cus">CUS</span></a></div>
 			<div id="logo3"><a href="{% url 'home' %}">한국외국어대학교 동아리연합회</a></div>
 		</div>
@@ -246,18 +368,135 @@ footer {
 				<li><a href="#">공지게시판</a></li>
 				<li><a href="#">회원관리</a></li>
 				<li><a href="{% url 'budget' %}">예산관리</a></li>
-                
 				<li><a href="#">지출관리</a></li>
 				<li><a href="#">강의실예약</a></li>
 			</ul>
         </div>
 	</header>
 	<section>
-		<a href={% url 'budget_usercheck'%}>승인상태 확인하러가기</a>
+		<input type="button" class="btn btn-5" onClick="location.href='{% url 'budget_usercheck'%}'" value="승인상태 확인">
+		<h3>최근 공지사항</h3>
+		<hr></hr>
+		<table id="notice">
+			<tr>
+				<th>5</th>
+				<td><span class="title">공지사항 5</span></td>
+				<td><span class="date">2019-12-09</span></td>
+			</tr>
+			<tr>
+				<th>4</th>
+				<td><span class="title">공지사항 4</span></td>
+				<td><span class="date">2019-12-07</span></td>
+			</tr>
+			<tr>
+				<th>3</th>
+				<td><span class="title">공지사항 3</span></td>
+				<td><span class="date">2019-12-05</span></td>
+			</tr>
+			<tr>
+				<th>2</th>
+				<td><span class="title">공지사항 2</span></td>
+				<td><span class="date">2019-12-03</span></td>
+			</tr>
+			<tr>
+				<th>1</th>
+				<td><span class="title">공지사항 1</span></td>
+				<td><span class="date">2019-12-01</span></td>
+			</tr>
+		</table>
+		<h3>공간 예약 현황</h3>
+		<hr></hr>
+		<table id="reservation">
+			<tr>
+				<th>장소</th>
+				<th>날짜</th>
+				<th>시간</th>
+				<th>신청인 아이디</th>
+				<th>신청 동아리</th>
+				<th>상태</th>
+			</tr>
+			<tr>
+				<td>강의실</td>
+				<td>2019-12-01</td>
+				<td>9시~12시</td>
+				<td>201501234</td>
+				<td>국제관계연구회</td>
+				<td>승인</td>
+			</tr>
+			<tr>
+				<td>세미나실</td>
+				<td>2019-12-02</td>
+				<td>13시~18시</td>
+				<td>201601234</td>
+				<td>Black Knights</td>
+				<td>승인</td>
+			</tr>
+			<tr>
+				<td>전시실</td>
+				<td>2019-12-03</td>
+				<td>9시~18시</td>
+				<td>201701234</td>
+				<td>그림촌</td>
+				<td>반려</td>
+			</tr>
+			<tr>
+				<td>세미나실</td>
+				<td>2019-12-04</td>
+				<td>9시~12시</td>
+				<td>201801234</td>
+				<td>외대연극회</td>
+				<td>승인</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		<h3>서울캠퍼스 동아리 리스트</h3>
+		<hr></hr>
+		<div id="category">
+			<div class="category_name" onmouseover="on_category(this);">공연</div>
+			<div class="category_name" onmouseover="on_category(this);">생활 문화</div>
+			<div class="category_name" onmouseover="on_category(this);">응용 학술</div>
+			<div class="category_name" onmouseover="on_category(this);">인문 사회</div>
+			<div class="category_name" onmouseover="on_category(this);">종교 봉사 1</div>
+			<div class="category_name" onmouseover="on_category(this);">종교 봉사 2</div>
+			<div class="category_name" onmouseover="on_category(this);">체육 1</div>
+			<div class="category_name" onmouseover="on_category(this);">체육 2</div>
+			<div class="tri"></div>
+			<div class="tri"></div>
+			<div class="tri"></div>
+			<div class="tri"></div>
+			<div class="tri"></div>
+			<div class="tri"></div>
+			<div class="tri"></div>
+			<div class="tri"></div>
+		</div>
+		<div id="list"></div>
 	</section>
 	<footer>
 		<div class="university">
-			<div class="footer_logo"><img src="img/hufs2.png" alt="한국외대로고"></div>
+			<div class="footer_logo"><img src="https://postfiles.pstatic.net/MjAxOTEyMDhfMTM5/MDAxNTc1Nzc4NTQ0NDM5.E5zzaMSFxmHiF7cKvYO9ekjrUaIxT7MtQwLJKaPTdjAg.FqLDk3fZnZt984PJPdXzHs-anh1yzI1Br3jFo8FVNmYg.PNG.smkim104/hufs2.png?type=w773" alt="한국외대로고"></div>
 			<div class="intro">
 				<p>한국외국어대학교 서울캠퍼스</p>
 				<p>02450 서울특별시 동대문구 이문로 107</p>
@@ -278,7 +517,7 @@ footer {
 			</div>
 		</div>
 		<div class="club_union">
-			<div class="footer_logo"><img src="img/hufscus2.png" alt="동아리연합회로고"></div>
+			<div class="footer_logo"><img src="https://postfiles.pstatic.net/MjAxOTEyMDhfMTY4/MDAxNTc1Nzc4NTY0NzAw.bOlxfNfNKSv1Gvv2xyqyjyRz80a_jy-BlaFH4KoQnAIg.VM50aJEeNXhgxWaaWUFbKHPi3-uX7xQhih2cp55-dpsg.PNG.smkim104/hufscus2.png?type=w773" alt="동아리연합회로고"></div>
 			<div class="intro">
 				<p>한국외국어대학교 서울캠퍼스 제36대 동아리연합회 HUFSCUSE ME</p>
 				<p>02450 서울특별시 동대문구 이문로 107 국제학사 405호</p>
@@ -302,6 +541,107 @@ footer {
 				Copyright ⓒ Hankuk University of Foreign Studies. All Rights Reserved.
 		</div>
 	</footer>
+	<script type="text/javascript">
+		var category = document.getElementsByClassName('category_name');
+		var tri = document.getElementsByClassName('tri');
+		var pre_index = 1; // 이 전에 onmouseover된 div의 index, 시작값은 category 컬렉션의 index에서 0이 아닌 숫자 선택
+
+		window.onload = function default_set() {
+			on_category(category[0]);
+		}
+
+		function get_index(div) {
+			var index = 0;
+
+			for (var ele of category) {
+				if (div == ele) {
+					return index;
+				}
+				index += 1;
+			}
+		}
+
+		function on_category(div) {
+			var cur_index = get_index(div); // category 컬렉션 내에서 div의 인덱스
+			var cur_tri = tri[cur_index];
+
+			// 같은 곳에 마우스를 또 올리면 함수를 실행하지 않음
+			if (pre_index != cur_index) {
+				reset(pre_index);
+			} else {
+				return;
+			}
+
+			// 마우스가 올라간 카테고리 css 변경
+			div.style.border = "none";
+			div.style.color = "#b3a88f";
+			div.style.backgroundColor = "#142C46";
+
+			// 마우스가 올라간 카테고리 아래에 같은 색상의 역삼각형 만들기
+			cur_tri.style.width = "0px";
+			cur_tri.style.height = "0px";
+			cur_tri.style.borderLeft = "10px solid transparent";
+			cur_tri.style.borderRight = "10px solid transparent";
+			cur_tri.style.borderTop = "15px solid #142C46";
+			cur_tri.style.marginLeft = "52px";
+
+			create_list(cur_index);
+
+			pre_index = cur_index;
+		}
+
+		function reset(index) {
+			var pre_div = category[index];
+			var pre_tri = tri[index];
+
+			// 직전에 선택되었던 카테고리 css를 원래대로 되돌림
+			pre_div.style.border = "solid 0.5px #adadad";
+			if (index != 0) { // 첫번째 카테고리는 왼쪽 border가 다른 카테고리와 겹치지 않으므로
+				pre_div.style.borderLeft = "none";
+			}
+			pre_div.style.color = "gray";
+			pre_div.style.backgroundColor = "white";
+
+			// 직전에 선택되었던 카테고리 아래 있었던 역삼각형을 없앰
+			pre_tri.style.border = "none";
+		}
+
+		function create_list(category_index) {
+			// category_index와 club_list, loc_list 안에 있는 카테고리 별 동아리 명과 동아리실 정보를 담은 리스트의 인덱스가 대응되도록 배치
+			var club_list = [['F.A.', 'HUFSDOVY', 'HUFSPhil', '노래나래', '라온', '새물결', '얼소리', '외대연극회', '외대합창단', '외인부대', '재인', '취현', '하울'], 
+							['CEREBRO', '그림촌', '기우회', '서우회', '아상블라주', '앵글스', '영화울림', '해갈', '향연', '목요음악반'],
+							['애드라인', 'A.L.A', 'AIESEC', 'EXAMA', 'HUVE', 'KUSEA', 'OLIVO', 'POSTRADE', 'TIME', '만리행', '컴퓨던트'],
+							['HDS', '국제관계연구회', '노곳떼', '왼쪽날개', '외대문학회	', '우연', '해외문학회'],
+							['KR BUDDY', 'KUSA', '로타랙트', '불교학생회', '세인트	', '실천사랑	', '칠하담'],
+							['CAM', 'CCC', 'IVF', 'JOY선교회', 'UBF', '네비게이토', '예수전도단'],
+							['Airo F.F', 'Team LIFTERS', '검도부', '국토순례반', '러너스하이', '복싱부', '산악부', '수영부', '조정부	', '태권도부'],
+							['Black Knights', 'PLUTO', '농구부', '야구부', '축구부', '탁구부', '테니스부', '핸드볼부']];
+			var loc_list = [['지하캠퍼스 B2-13호', '사회과학관 B004호', '국제학사 439호', '지하캠퍼스 B2-09호', '지하캠퍼스 B2-05호', '지하캠퍼스B2-17호', '국제학사 404호', '국제학사 441호	', '지하캠퍼스 B2-18호', '지하캠퍼스 B2-11호', '사회과학관 B005호', '국제학사 436호', '국제학사 431호	'],
+							['국제학사 231호', '국제학사 312호', '국제학사 341호', '국제학사 435호', '국제학사 B104호', '국제학사 316호', '국제학사 442호', '지하캠퍼스 B1-04호	', '국제학사 313호', '국제학사 440호'],
+							['국제학사 317호', '국제학사 319호', '국제학사 321호', '국제학사 344호', '국제학사 318호', '국제학사 343호', '국제학사 447호', '국제학사 320호', '국제학사 342호', '국제학사 303호', '국제학사 340호'],
+							['지하캠퍼스 B1-05호', '국제학사 446호', '국제학사 444호', '지하캠퍼스 B1-08호', '지하캠퍼스B1-06호', '지하캠퍼스 B1-07호', '국제학사 443호	'],
+							['국제학사 422호', '국제학사 432호', '국제학사 433호', '국제학사421호', '국제학사 449호', '국제학사 434호	', '지하캠퍼스 B2-03호'],
+							['국제학사 430호', '국제학사 424호', '국제학사 425호', '국제학사 427호', '국제학사 429호	', '국제학사 428호', '국제학사 426호'],
+							['국제학사 423호', '국제학사 B103호', '국제학사 322호', ' 지하캠퍼스 B1-09호', '국제학사 448호', '국제학사 B105호', '국제학사 304호', '국제학사 419호', '사회과학관 B008호', '교수학습개발원 B1-04호'],
+							['국제학사 445호', '국제학사 420호', '사회과학관 B002호', '사회과학관 B006호', '사회과학관 B007호	', '국제학사 B101호', '사회과학관 B001호', '사회과학관 B003호']]
+			var clubs = club_list[category_index].length; // 해당 카테고리에 속해있는 동아리 개수
+			var tag = "";
+
+			// 해당 카테고리에 속해있는 동아리 정보를 테이블에 담아 출력
+			for (i = 0; i < clubs; i++) {
+				tag += "<table>";
+				tag += "<tr><th>"
+				tag += club_list[category_index][i];
+				tag += "</th></tr>";
+				tag += "<tr><td>";
+				tag += loc_list[category_index][i];
+				tag += "</td></tr>";
+				tag += "</table>";
+			}
+
+			document.getElementById('list').innerHTML = tag;
+		}
+	</script>
 </body>
 </html>
 </body>
