@@ -55,7 +55,7 @@ def logout(request):
     return render(request, 'login.html')
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'index.html')
 
 def budget(request):
     if request.user.is_superuser:
